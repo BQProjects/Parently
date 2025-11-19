@@ -1,5 +1,5 @@
 import React from "react";
-import Parently_Header_Logo  from "../Images/parently_header_logo.png"
+import Parently_Header_Logo  from "../../assets/Images/parently_header_logo.png"
 
 const Header = () => {
     return(

@@ -1,7 +1,7 @@
-import React from "react";
-import Apparently_Logo from "../Images/Apparently_Logo.png";
+import Apparently_Logo from "../../assets/Images/Apparently_Logo.png";
 
-const Login = () => {
+const AdminLogin = () => {
+
     return (
         <>
             <div className="bg-[#FFFBF4] w-full h-full min-h-full font-Inter">
@@ -42,8 +42,11 @@ const Login = () => {
                                 <input type="checkbox" />
                                 <p className="text-[14px] font-light">Remember me</p>
                             </div>
-                            <p className="">Forgot Password?</p>
                         </div>
+
+                        <button>
+                            
+                        </button>
                     </div>
                 </div>
             </div>
@@ -51,4 +54,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default AdminLogin;
