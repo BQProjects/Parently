@@ -7,6 +7,14 @@ import Dashboard_Icon_Clicked from "../../assets/Images/Dashboard_Icon_Clicked.p
 import Content_Management_NC from "../../assets/Images/Content_Management_NC_Logo.png";
 import Content_Management_C from "../../assets/Images/Content_Management_C_Logo.png";
 import Parently_Header_Logo  from "../../assets/Images/parently_header_logo.png";
+import User_Export_NC from "../../assets/Images/User_Export_NC.png";
+import User_Export_C from "../../assets/Images/User_Export_C.png";
+import Subscription_Management_C from "../../assets/Images/Subscription_Management_C.png";
+import Subscription_Management_NC from "../../assets/Images/Subscription_Management_NC.png";
+import User_Management_NC from "../../assets/Images/User_Management_NC.png";
+import User_Management_C from "../../assets/Images/User_Management_C.png";
+import Push_Notificaton_NC from "../../assets/Images/Push_Notificaton_NC.png";
+import Push_Notificaton_C from "../../assets/Images/Push_Notificaton_NC.png";
 import Left_Arrow from "../../assets/Images/LeftArrow.png";
 
 const Sidebar = () => {
@@ -50,7 +58,7 @@ const Sidebar = () => {
                 <NavLink
                     to="/admin/dashboard"
                     className={({ isActive }) =>
-                    `flex items-center space-x-2 px-4 py-2 rounded-md ${isActive ? "bg-[#cfedac] text-[#7B9D51]" : "text-black bg-gray-200"}`}
+                    `flex items-center space-x-2 px-4 py-2 rounded-md text-[15px] ${isActive ? "bg-[#cfedac] text-[#7B9D51]" : "text-black bg-gray-200"}`}
                 >
                     {({ isActive }) => (
                     <>
@@ -64,7 +72,7 @@ const Sidebar = () => {
                 </NavLink>
                 <NavLink 
                   className={({isActive}) =>  `
-                    ${isActive ? "bg-[#cfedac] text-[#7B9D51]" : "text-black bg-gray-200" } flex items-center space-x-2 px-4 py-2 rounded-md `
+                    ${isActive ? "bg-[#cfedac] text-[#7B9D51]" : "text-black bg-gray-200" } text-[15px] flex items-center space-x-2 px-4 py-2 rounded-md`
                   }
                   to="/admin/content-management"
                   >
@@ -78,15 +86,71 @@ const Sidebar = () => {
                       </>
                     )}
                 </NavLink>
-                <Link to="/dashboard">Subscription Management</Link>
-                <Link to="/dashboard">Push Notifications Management</Link>
+
+                <NavLink
+                  className={({isActive}) => `${ isActive ? "bg-[#cfedac] text-[#7B9D51]" : "text-black bg-gray-200" } text-[15px] flex items-center space-x-2 px-4 py-2 rounded-md `}
+                  to="/admin/user-management"
+                >
+                  {({isActive}) => (
+                    <>
+                        <img 
+                          src={isActive ? User_Management_C : User_Management_NC }
+                          className="h-5"
+                        />
+                        <p>User Management</p>
+                      </>
+                  )}
+                </NavLink>
+
+                <NavLink
+                  className={({isActive}) => `${ isActive ? "bg-[#cfedac] text-[#7B9D51]" : "text-black bg-gray-200" } text-[15px] flex items-center space-x-2 px-4 py-2 rounded-md `}
+                  to="/admin/subscription-management"
+                >
+                  {({isActive}) => (
+                    <>
+                        <img 
+                          src={isActive ? Subscription_Management_C : Subscription_Management_NC }
+                          className="h-5"
+                        />
+                        <p>Subscription Management</p>
+                      </>
+                  )}
+                </NavLink>
+
+                <NavLink
+                  className={({isActive}) => `${ isActive ? "bg-[#cfedac] text-[#7B9D51]" : "text-black bg-gray-200" } text-[15px] flex items-center space-x-2 px-4 py-2 rounded-md `}
+                  to="/admin/push-notification-management"
+                >
+                  {({isActive}) => (
+                    <>
+                        <img 
+                          src={isActive ? Push_Notificaton_C : Push_Notificaton_NC }
+                          className="h-5"
+                        />
+                        <p>Push Notification Management</p>
+                      </>
+                  )}
+                </NavLink>
+
+                <NavLink
+                  className={({isActive}) => `${ isActive ? "bg-[#cfedac] text-[#7B9D51]" : "text-black bg-gray-200" } text-[15px] flex items-center space-x-2 px-4 py-2 rounded-md `}
+                  to="/admin/manage-experts"
+                >
+                  {({isActive}) => (
+                    <>
+                        <img 
+                          src={isActive ? User_Export_C : User_Export_NC }
+                          className="h-5"
+                        />
+                        <p>Manage Experts</p>
+                      </>
+                  )}
+                </NavLink>
+
             </div>
 
             {/* Right Section */}
             <div className="flex-1 flex flex-col overflow-hidden">
-                {/* Secondary Navbar */}
-                
-
                 <main className="flex-1 overflow-y-auto py-2 px-4">
                     <Outlet />
                 </main>

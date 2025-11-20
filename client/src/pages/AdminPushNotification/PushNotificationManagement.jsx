@@ -1,17 +1,17 @@
 import React from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 
-const ContentManagement = () => {
+const PushNotificationManagement = () => {
 
     const { pathname } = useLocation();
-    const isChildren = pathname === "/admin/content-management";
+    const isChildren = pathname === "/admin/push-notification-management"
 
     return (
         <div>
             {
                 isChildren && (
                     <>
-                        <h1>ContentManagement</h1>
+                        <h1>Push Notification Management</h1>
                     </>
                 )
             }
@@ -20,4 +20,4 @@ const ContentManagement = () => {
     )
 }
 
-export default ContentManagement
+export default PushNotificationManagement
