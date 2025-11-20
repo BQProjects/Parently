@@ -17,7 +17,7 @@ const AdminLogin = () => {
     const handleSubmit = () => {
         if(Admin.email.trim() !== "" && Admin.password.trim() !==""){
             if(Admin.email ==="admin@gmail.com" && Admin.password ==="admin"){
-                navigate("/dashboard");
+                navigate("/admin/dashboard");
                 if(rememberMe)
                     localStorage.setItem("adminCred", "true");
                 else
@@ -33,7 +33,7 @@ const AdminLogin = () => {
 
         const Saved = localStorage.getItem("adminCred");
         if(Saved){
-            navigate("/dashboard")
+            navigate("/admin/dashboard")
         }
     }, []);
 

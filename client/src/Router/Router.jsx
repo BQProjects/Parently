@@ -4,7 +4,11 @@ import AdminLogin from "../pages/adminAuth/AdminLogin";
 import Layout from "../Compnents/globalComponents/Layout";
 import AdminDashboard from "../pages/adminDashboard/AdminDashboard";
 import SidebarLayout from "../Compnents/globalComponents/Siderbar";
-import ContentManagement from "../pages/adminVideos/ContentManagement";
+import ContentManagement from "../pages/adminContentManagement/ContentManagement";
+import TotalUsersDashboard from "../pages/adminDashboard/TotalUsersDashboard";
+import ChurnDashboard from "../pages/adminDashboard/ChurnDashboard";
+import Revenue_Dashboard from "../pages/adminDashboard/Revenue_Dashboard";
+import TotalWatchDashboard from "../pages/adminDashboard/TotalWatchDashboard";
 
 const Router = createBrowserRouter([
   {
@@ -16,7 +20,16 @@ const Router = createBrowserRouter([
     path: "/admin",
     element: <SidebarLayout />,
     children: [
-      { path: "dashboard", element: <AdminDashboard /> },
+      {
+        path: "dashboard",
+        element: <AdminDashboard />,
+        children: [
+          { path: "total_users", element: <TotalUsersDashboard /> },
+          { path: "churn_rate", element: <ChurnDashboard /> },
+          { path: "revenue", element: <Revenue_Dashboard /> },
+          { path: "total_watch", element: <TotalWatchDashboard /> },
+        ]
+      },
       { path: "content-management", element: <ContentManagement /> },
     ],
   },
