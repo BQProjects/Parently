@@ -136,10 +136,9 @@ const Sidebar = () => {
               {/* Title */}
               <div
                 className="flex items-center gap-3 cursor-pointer px-2"
-                onClick={() => setIsContentOpen(!isContentOpen)}
+                onClick={() => {setIsContentOpen(!isContentOpen); navigate("/admin/content-management")}}
               >
                 <Link 
-                  to="/admin/content-management"
                   className={`flex items-center space-x-2 py-0.5 ${isContentOpen? "text-[#7B9D51]": "text-black"}`}
                 >
                   <img
@@ -229,8 +228,8 @@ const Sidebar = () => {
                       <SubMenuItem
                         to="/admin/content-management/e-books/e-book-draft"
                         label="eBook Draft"
-                        imgC={E_Book_Draft_C}
-                        imgNC={E_Book_Draft_NC}
+                        imgC={E_Book_Draft_NC}
+                        imgNC={E_Book_Draft_C}
                       />
                     </div>
                   )}
