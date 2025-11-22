@@ -12,6 +12,14 @@ const SubscriptionSchema = new Schema(
     durationInMonths: {
       type: Number,
     },
+    features: [
+      {
+        type: String,
+      },
+    ],
+    tumbnail: {
+      type: String,
+    },
   },
   {
     timestamps: true,

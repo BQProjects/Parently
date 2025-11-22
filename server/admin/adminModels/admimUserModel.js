@@ -14,6 +14,7 @@ const AdminSchema = new Schema(
     },
     password: {
       type: String,
+      select: false,
     },
     avatar: {
       type: String,

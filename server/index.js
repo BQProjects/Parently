@@ -53,6 +53,7 @@ app.use("/api/admin-dash", adminDashboardRoute);
 
 app.get("/", (req, res) => {
   res.send("Server is started");
+  console.log("Server is started");
 });
 
 // Export for Vercel serverless
@@ -62,7 +63,7 @@ module.exports = app;
 if (require.main === module) {
   connectToDatabase()
     .then(() => {
-      app.listen(9000, () => console.log("Server is started"));
+      app.listen(9090, () => console.log("Server is started"));
     })
     .catch((err) => {
       console.error("Failed to connect to database:", err);

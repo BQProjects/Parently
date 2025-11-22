@@ -20,6 +20,11 @@ const ExpertSchema = new Schema(
     profile: {
       type: String,
     },
+    status: {
+      type: String,
+      enum: ["active", "inactive"],
+      default: "inactive",
+    },
     bookedSessions: [{ type: Date }],
   },
   { timestamps: true }
