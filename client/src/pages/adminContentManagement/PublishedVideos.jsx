@@ -21,8 +21,8 @@ const PublishedVideos = () => {
                     type='text'
                     placeholder='Search Videos...'
                     className='border-[#adc98c] border-1 outline-none px-8 h-12 text-md rounded-md w-[60%]'
-                    // value={search}
-                    // onChange={(e) => setSearch(e.target.value)}
+                // value={search}
+                // onChange={(e) => setSearch(e.target.value)}
                 />
                 <div className="relative flex items-center">
                     <select className="border-[#adc98c] border-1 pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer">
@@ -62,7 +62,9 @@ const PublishedVideos = () => {
                                     {data.access_Level}
                                 </span>
                             </td>
-                            <td className="border border-gray-300 px-4 py-4 text-center">{new Date(data.date).toISOString().split('T')[0]}</td>
+                            <td className="border border-gray-300 px-4 py-4 text-center">
+                                {data.date ? new Date(data.date).toISOString().split('T')[0] : "N/A"}
+                            </td>
                             <td className="px-4 py-4 flex justify-around">
                                 <button className='w-15 bg-gray-200 text-sm py-2 cursor-pointer rounded-md border-1'>View</button>
                                 <button className='w-15 bg-gray-200 text-sm py-2 cursor-pointer rounded-md border-1'

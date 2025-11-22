@@ -11,6 +11,8 @@ export const EbookProvider = ({ children }) => {
         setBooksData((prev) => [...prev, EbookWithId])
     }
 
+    console.log("Context Data: ",booksData);
+
     const Remove_e_Book = (id) => {
         setBooksData((prev) => prev.filter((book) => book.id !== id));
     }

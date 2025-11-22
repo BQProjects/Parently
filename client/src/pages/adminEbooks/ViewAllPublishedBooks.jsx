@@ -13,6 +13,8 @@ const ViewAllPublishedBooks = () => {
         setPublishedBooks(booksData);
     }, [booksData]);
 
+    console.log(booksData)
+
     return (
         <div className='font-Inter mx-2'>
             <h1 className='font-medium text-2xl mt-4 ml-2'>All Published Videos</h1>
@@ -21,8 +23,8 @@ const ViewAllPublishedBooks = () => {
                     type='text'
                     placeholder='Search Videos...'
                     className='border-[#adc98c] border-1 outline-none px-8 h-12 text-md rounded-md w-[60%]'
-                    // value={search}
-                    // onChange={(e) => setSearch(e.target.value)}
+                // value={search}
+                // onChange={(e) => setSearch(e.target.value)}
                 />
                 <div className="relative flex items-center">
                     <select className="border-[#adc98c] border-1 pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer">
@@ -45,7 +47,7 @@ const ViewAllPublishedBooks = () => {
                         <th className="border border-gray-300 px-4 py-4 text-start">Thumbnail</th>
                         <th className="border border-gray-300 px-4 py-4 text-start">Title</th>
                         <th className="border border-gray-300 px-4 py-4 text-start">Category</th>
-                        <th className="border border-gray-300 px-4 py-4 text-start">Access Level</th>
+                        <th className="border border-gray-300 px-4 py-4 text-start">Language</th>
                         <th className="border border-gray-300 px-4 py-4 text-start">Upload Date</th>
                         <th className="border border-gray-300 px-4 py-4 text-start">Actions</th>
                     </tr>
@@ -53,16 +55,23 @@ const ViewAllPublishedBooks = () => {
                 <tbody>
                     {publishedBooks.length > 0 ? publishedBooks.map((data, index) => (
                         <tr key={index} className="bg-[#d8e8c6]">
-                            <td className="border border-gray-300 px-4 py-4 text-center">{`VID${String(index + 1).padStart(3, "0")}`}</td>
-                            <td className="border border-gray-300 px-4 py-4 text-center">{data.thumbnail}</td>
+                            <td className="border border-gray-300 px-4 py-4 text-center">{`E-Book${String(index + 1).padStart(3, "0")}`}</td>
+                            <td className="border border-gray-300 px-4 py-4">
+                                {data.thumbnail ? (
+                                    <img
+                                        src={URL.createObjectURL(data.thumbnail)}
+                                        alt="Thumbnail"
+                                        className="w-16 h-16 object-cover rounded"
+                                    />
+                                ) : (
+                                    "No Thumbnail"
+                                )}
+                            </td>
                             <td className="border border-gray-300 px-4 py-4">{data.title}</td>
                             <td className="border border-gray-300 px-4 py-4 text-center">{data.category}</td>
-                            <td className="border border-gray-300 px-4 py-4 text-center">
-                                <span className={`${data.access_Level === "Free" ? "bg-[#98a883] text-black" : "bg-[#7B9D51] text-white"} px-2 py-1 rounded`}>
-                                    {data.access_Level}
-                                </span>
-                            </td>
-                            <td className="border border-gray-300 px-4 py-4 text-center">{new Date(data.date).toISOString().split('T')[0]}</td>
+                            <td className="border border-gray-300 px-4 py-4">{data.language}</td>
+                            <td className="border border-gray-300 px-4 py-4 text-center">{data.date ? new Date(data.date).toISOString().split('T')[0] : "N/A"}</td>
+
                             <td className="px-4 py-4 flex justify-around">
                                 <button className='w-15 bg-gray-200 text-sm py-2 cursor-pointer rounded-md border-1'>View</button>
                                 <button className='w-15 bg-gray-200 text-sm py-2 cursor-pointer rounded-md border-1'
