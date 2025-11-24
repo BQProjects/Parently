@@ -15,6 +15,7 @@ const AddNewEBook = () => {
         thumbnail: null,
         content: "",
         status: "",
+        AccessLevel: "Premium",
         date: new Date(),
     }
 

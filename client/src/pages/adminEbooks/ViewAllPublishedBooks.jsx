@@ -1,61 +1,116 @@
 import React from 'react'
 import { useEbook } from '../../Context/EbookContext';
 import { IoIosArrowDown } from "react-icons/io";
+import { IoSearch } from "react-icons/io5";
 
 const ViewAllPublishedBooks = () => {
 
-    const { booksData, Remove_e_Book } = useEbook();
+    const { booksData, Remove_e_Book, CategoriesList, AccessLevel } = useEbook();
     const [deleteVideo, setDeleteVideo] = React.useState(null);
 
     const [publishedBooks, setPublishedBooks] = React.useState([]);
+    const [selectedCategory, setSelectedCategory] = React.useState("all");
+    const [selectedAccessLevel, setSelectedAccessLevel] = React.useState("all");
+    const [search, setSearch] = React.useState("");
 
     React.useEffect(() => {
-        setPublishedBooks(booksData);
+
+        const FetchPublishedBooks = () => {
+            const published = booksData.filter((book) => book.status === "publish");
+            return published;
+        }
+
+        setPublishedBooks(FetchPublishedBooks);
+
+        FetchPublishedBooks();
     }, [booksData]);
 
-    console.log(booksData)
+    const SelectedCatList = () => {
+        if (selectedCategory.toLowerCase() === "all") {
+            return publishedBooks;
+        }
+        else {
+            return publishedBooks.filter((booksData) => booksData.category.toLowerCase() === selectedCategory.toLowerCase());
+        }
+    }
+
+    const SelectedAccessLevel = () => {
+        if (selectedAccessLevel.toLowerCase() === "all")
+            return SelectedCatList();
+        else{
+            return SelectedCatList().filter((booksData) => booksData.AccessLevel.toLowerCase() === selectedAccessLevel.toLowerCase())
+        }
+    }
+
+    const SearchedList = () => {
+        if (search === "")
+            return SelectedAccessLevel();
+        else {
+            return SelectedAccessLevel().filter((book) => book.title.toLowerCase().includes(search.toLowerCase()));
+        }
+    }
 
     return (
-        <div className='font-Inter mx-2'>
-            <h1 className='font-medium text-2xl mt-4 ml-2'>All Published Videos</h1>
-            <div className='border-[#7B9D51] border-1 py-8 px-8 rounded-md flex space-x-4 my-4'>
-                <input
-                    type='text'
-                    placeholder='Search Videos...'
-                    className='border-[#adc98c] border-1 outline-none px-8 h-12 text-md rounded-md w-[60%]'
-                // value={search}
-                // onChange={(e) => setSearch(e.target.value)}
-                />
-                <div className="relative flex items-center">
-                    <select className="border-[#adc98c] border-1 pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer">
-                        <option>Select By Category</option>
-                    </select>
-                    <IoIosArrowDown className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-600" />
+        <div className='font-Inter mx-2 mb-12'>
+            <h1 className='font-medium text-2xl mt-4 ml-2'>All Published eBooks</h1>
+            <div className='border-[#adc98c] border-1 py-8 px-8 rounded-md flex my-4'>
+                <div className="relative flex items-center w-[120%]">
+                    <input
+                        type='text'
+                        placeholder='Search eBooks...'
+                        className='border-[#adc98c] border-1 outline-none px-10 h-12 text-md rounded-md w-[97%]'
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                    <IoSearch className="absolute left-4" />
                 </div>
-                <div className="relative flex items-center">
-                    <select className='border-[#adc98c] border-1 pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer'>
-                        <option>Filter By Access Level</option>
-                    </select>
-                    <IoIosArrowDown className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-600" />
+                <div className='flex space-x-4 w-[60%]'>
+                    <div className="relative flex items-center w-[40%]">
+                        <select
+                            value={selectedCategory}
+                            onChange={(e) => setSelectedCategory(e.target.value)}
+                            placeholder="Filter by Category"
+                            className="border-[#adc98c] border-1 pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer"
+                        >
+                            {CategoriesList().map((category, index) => (
+                                <option key={index} value={category.toLowerCase()}>{category}</option>
+                            ))
+                            }
+                        </select>
+                        <IoIosArrowDown className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-600" />
+                    </div>
+                    <div className="relative flex items-center w-[60%]">
+                        <select 
+                            value={selectedAccessLevel}
+                            onChange={(e) => setSelectedAccessLevel(e.target.value)}
+                            placeholder="Filter by Access Level"
+                            className='border-[#adc98c] border-1 pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer'>
+                            {AccessLevel().map((AccessLevel, index) => (
+                                    <option key={index} value={AccessLevel.toLowerCase()}>{AccessLevel}</option>
+                                ))
+                            }
+                        </select>
+                        <IoIosArrowDown className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-600" />
+                    </div>
                 </div>
             </div>
 
             <table className="border-collapse border border-gray-300 w-full">
                 <thead>
-                    <tr className="bg-[#7B9D51] text-white">
-                        <th className="border border-gray-300 px-4 py-4 text-start">Video ID</th>
+                    <tr className="bg-[#adc98c] text-black">
+                        <th className="border border-gray-300 px-4 py-4 text-start">eBook ID</th>
                         <th className="border border-gray-300 px-4 py-4 text-start">Thumbnail</th>
                         <th className="border border-gray-300 px-4 py-4 text-start">Title</th>
                         <th className="border border-gray-300 px-4 py-4 text-start">Category</th>
-                        <th className="border border-gray-300 px-4 py-4 text-start">Language</th>
+                        <th className="border border-gray-300 px-4 py-4 text-start">Access Level</th>
                         <th className="border border-gray-300 px-4 py-4 text-start">Upload Date</th>
                         <th className="border border-gray-300 px-4 py-4 text-start">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {publishedBooks.length > 0 ? publishedBooks.map((data, index) => (
-                        <tr key={index} className="bg-[#d8e8c6]">
-                            <td className="border border-gray-300 px-4 py-4 text-center">{`E-Book${String(index + 1).padStart(3, "0")}`}</td>
+                    {SearchedList().length > 0 ? SearchedList().map((data, index) => (
+                        <tr key={index} className="bg-[#f1f2f0]">
+                            <td className="border border-gray-300 px-4 py-4 text-center">{`BOOK${String(index + 1).padStart(3, "0")}`}</td>
                             <td className="border border-gray-300 px-4 py-4">
                                 {data.thumbnail ? (
                                     <img
@@ -68,13 +123,13 @@ const ViewAllPublishedBooks = () => {
                                 )}
                             </td>
                             <td className="border border-gray-300 px-4 py-4">{data.title}</td>
-                            <td className="border border-gray-300 px-4 py-4 text-center">{data.category}</td>
-                            <td className="border border-gray-300 px-4 py-4">{data.language}</td>
-                            <td className="border border-gray-300 px-4 py-4 text-center">{data.date ? new Date(data.date).toISOString().split('T')[0] : "N/A"}</td>
+                            <td className="border border-gray-300 px-4 py-4">{data.category}</td>
+                            <td className="border border-gray-300 px-4 py-4">{data.AccessLevel}</td>
+                            <td className="border border-gray-300 px-4 py-4">{data.date ? new Date(data.date).toISOString().split('T')[0] : "N/A"}</td>
 
-                            <td className="px-4 py-4 flex justify-around">
-                                <button className='w-15 bg-gray-200 text-sm py-2 cursor-pointer rounded-md border-1'>View</button>
-                                <button className='w-15 bg-gray-200 text-sm py-2 cursor-pointer rounded-md border-1'
+                            <td className="border border-gray-300 px-4 py-4 text-center space-x-8">
+                                <button className='w-15 bg-gray-200 text-sm py-1.5 cursor-pointer rounded-md border-1'>View</button>
+                                <button className='w-15 bg-gray-200 text-sm py-1.5 cursor-pointer rounded-md border-1'
                                     onClick={() => setDeleteVideo(data)}
                                 >
                                     Delete
@@ -94,7 +149,7 @@ const ViewAllPublishedBooks = () => {
                     <div className="absolute inset-0 bg-black opacity-60"></div>
                     <div className="relative bg-white rounded-lg p-6 w-96 shadow-lg z-10">
                         <h2 className="text-xl font-semibold mb-2">Confirm Delete</h2>
-                        <p className="mb-6">Are you sure you want to delete this E-Book?</p>
+                        <p className="mb-6">Are you sure you want to delete this eBook?</p>
                         <div className="flex justify-end space-x-4">
                             <button
                                 onClick={() => setDeleteVideo(null)}

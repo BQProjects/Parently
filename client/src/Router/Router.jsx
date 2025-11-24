@@ -25,6 +25,7 @@ import Q_Videos from "../pages/AdminPushNotification/Q_Videos";
 import AddNewEBook from "../pages/adminEbooks/AddNewEBook";
 import ViewAllPublishedBooks from "../pages/adminEbooks/ViewAllPublishedBooks";
 import EBookDraft from "../pages/adminEbooks/EBookDraft";
+import UserDetail from "../pages/AdminUserManagement/UserDetail";
 
 const Router = createBrowserRouter([
   {
@@ -66,6 +67,7 @@ const Router = createBrowserRouter([
         ]
       },
       { path: "user-management", element: <UserManagement />},
+      { path: "user-management/user-detail/:id", element: <UserDetail />},
       { path: "subscription-management", element: <SubscriptionManagement /> },
       { path: "push-notification-management", element: <PushNotificationManagement />,
         children: [
