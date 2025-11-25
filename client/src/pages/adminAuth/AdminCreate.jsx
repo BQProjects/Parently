@@ -1,64 +1,49 @@
-import React from "react";
+import React from 'react';
 import Apparently_Logo from "../../assets/Images/Apparently_Logo.png";
 import { useNavigate } from "react-router-dom";
-import { UseAdmin } from "../../Context/AdminContext";
+import { UseAdmin } from '../../Context/AdminContext';
 
-const AdminLogin = () => {
+const AdminCreate = () => {
+
+    const navigate = useNavigate();
+    const {add_Admin_Data} = UseAdmin();
 
     const DefaultValues = { email: "", password: "" };
-    const navigate = useNavigate();
-
-    const { adminData } = UseAdmin();
-
-    React.useEffect(() => {
-        setAdminMainData(adminData);
-    })
-
-    const [Admin, setAdmin] = React.useState(DefaultValues); 
-    const [AdminMainData, setAdminMainData] = React.useState([]);
+    const [Admin, setAdmin] = React.useState(DefaultValues);
     const [rememberMe, setRememberMe] = React.useState(false);
 
     const handleChange = (e) => {
-        setAdmin({ ...Admin, [e.target.name]: e.target.value});
+        setAdmin({ ...Admin, [e.target.name]: e.target.value });
     }
-    
+
     const handleSubmit = () => {
-        if(Admin.email.trim() !== "" && Admin.password.trim() !==""){
-            if( AdminMainData.find(admin => admin.email === Admin.email) && AdminMainData.find(admin => admin.password === Admin.password)){
+        if (Admin.email.trim() !== "" && Admin.password.trim() !== "") {
+            if (Admin.email && Admin.password) {
+                console.log("admin data: ", Admin);
+                add_Admin_Data(Admin);
                 navigate("/admin/dashboard");
-                if(rememberMe)
+                if (rememberMe)
                     localStorage.setItem("adminCred", "true");
                 else
-                    localStorage.removeItem("adminCred")
-            }
-            else{
-                alert("Invalid Credentials!!!");
+                    localStorage.removeItem("adminCred");
+
+                setAdmin(DefaultValues);
             }
         }
-        else{
+        else {
             alert("Enter the Fields!!!");
         }
     }
 
-    React.useEffect(() => {
-
-        const Saved = localStorage.getItem("adminCred");
-        if(Saved){
-            navigate("/admin/dashboard")
-        }
-    }, []);
-
     return (
         <>
             <div className="bg-[#FFFBF4] w-full h-full min-h-full font-Inter">
-                <div
-                    className="relative bg-white w-[28%] border-2 border-gray-300 rounded-md left-[65%] top-8 flex flex-col justify-center py-8 px-6"
-                >
+                <div className="relative bg-white w-[28%] border-2 border-gray-300 rounded-md left-[65%] top-8 flex flex-col justify-center py-8 px-6">
                     <div className="flex flex-col items-center space-y-4">
                         <img src={Apparently_Logo} className="h-16" />
                         <div className="flex flex-col items-center space-y-0.5">
                             <h1 className="text-xl font-medium">
-                                Admin Login
+                                Create Admin Account
                             </h1>
                             <p className="text-sm tracking-wide font-extralight text-gray-500">
                                 Access your CRM dashboard
@@ -70,31 +55,31 @@ const AdminLogin = () => {
                         <label className="text-sm font-medium text-gray-600">
                             Email ID
                         </label>
-                        <input 
-                            type="email"
+                        <input
+                            type='email'
                             name="email"
                             value={Admin.email}
                             onChange={handleChange}
                             placeholder="Enter your email address"
-                            className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 outline-none text-[15px]" 
+                            className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 outline-none text-[15px]"
                         />
 
                         <label className="text-sm font-medium text-gray-600">
-                            Password
+                            password
                         </label>
                         <input
                             type="password"
                             name="password"
                             value={Admin.password}
                             onChange={handleChange}
-                            placeholder="Enter your password" 
-                            className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 outline-none text-[15px]" 
+                            placeholder="Enter your password"
+                            className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 outline-none text-[15px]"
                         />
 
                         <div className="flex justify-between">
                             <div className="flex space-x-1.5 items-center">
-                                <input 
-                                    type="checkbox" 
+                                <input
+                                    type="checkbox"
                                     checked={rememberMe}
                                     onChange={(e) => setRememberMe(e.target.checked)}
                                 />
@@ -103,11 +88,11 @@ const AdminLogin = () => {
                         </div>
 
                         <div className="flex flex-col items-center space-y-3">
-                            <button 
+                            <button
                                 onClick={handleSubmit}
                                 className="bg-[#7B9D51] w-full py-2 rounded-md text-white font-extralight"
                             >
-                                Login
+                                Create Account
                             </button>
                             <p className="text-gray-400 text-[12px]">Need help? Contact your system administrator</p>
                         </div>
@@ -115,7 +100,7 @@ const AdminLogin = () => {
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default AdminLogin;
+export default AdminCreate

@@ -26,12 +26,16 @@ import AddNewEBook from "../pages/adminEbooks/AddNewEBook";
 import ViewAllPublishedBooks from "../pages/adminEbooks/ViewAllPublishedBooks";
 import EBookDraft from "../pages/adminEbooks/EBookDraft";
 import UserDetail from "../pages/AdminUserManagement/UserDetail";
+import AdminCreate from "../pages/adminAuth/AdminCreate";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    children: [{ path: "/", element: <AdminLogin /> }],
+    children: [
+      { path: "/", element: <AdminLogin /> },
+      { path: "create-account", element: <AdminCreate />},
+    ],
   },
   {
     path: "/admin",

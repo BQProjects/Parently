@@ -5,6 +5,7 @@ import { VideoProvider } from "./Context/VideoContext";
 import { EbookProvider } from "./Context/EbookContext";
 import { UsersProvider } from "./Context/UsersContext";
 import { SubscriptionProvider } from "./Context/SubscriptionContext";
+import { AdminProvider } from "./Context/AdminContext";
 
 const App = () => {
   return (
@@ -13,7 +14,9 @@ const App = () => {
         <EbookProvider>
           <UsersProvider>
             <SubscriptionProvider>
-              <RouterProvider router={router} />
+              <AdminProvider>
+                <RouterProvider router={router} />
+              </AdminProvider>
             </SubscriptionProvider>
           </UsersProvider>
         </EbookProvider>
