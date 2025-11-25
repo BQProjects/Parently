@@ -10,9 +10,7 @@ const UserManagement = () => {
 
     const [selectedSubscription, setSelectedSubscription] = React.useState("all");
     const [selectedDate, setSelectedDate] = React.useState("all");
-    const [intialValue, setIntialValue] = React.useState(0);
-    const [updateValue, setUpdatedvalue] = React.useState(4);
-    const [disablenextButton, setDisablenextButton] = React.useState(true);
+    const [currentPage, setCurrentPage] = React.useState(1);
 
     const SelectedSubList = () => {
         if (selectedSubscription.toLowerCase().includes("all"))
@@ -30,15 +28,23 @@ const UserManagement = () => {
         }
     }
 
-    const handlePagNextButton = () => {
-        setIntialValue(updateValue);
-        if (updateValue < SelectedDateList().length) {
-            setUpdatedvalue(updateValue + 4);
-        }
-        else {
-            setDisablenextButton(!disablenextButton)
-        }
+    const itemsPerPage = 4;
+    const TotalItems = SelectedDateList().length;
+    const totalPages = Math.ceil(TotalItems / itemsPerPage);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages)
+            setCurrentPage(currentPage + 1);
     }
+
+    const handlePrevPage = () => {
+        if (currentPage > 1)
+            setCurrentPage(currentPage - 1);
+    }
+
+    const initalIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = initalIndex + itemsPerPage;
+    const pageData = SelectedDateList().slice(initalIndex, endIndex);
 
     return (
         <>
@@ -97,8 +103,8 @@ const UserManagement = () => {
 
                     <tbody>
                         {
-                            SelectedDateList().length > 0 ?
-                                SelectedDateList().slice(intialValue, updateValue).map((user, index) => (
+                            pageData.length > 0 ?
+                                pageData.map((user, index) => (
                                     <tr key={index} className="bg-[#f1f2f0]">
                                         <td className="border border-gray-300 px-4 py-4 text-center">{`USR${String(index + 1).padEnd(3, "0")}`}</td>
                                         <td className="border border-gray-300 px-4 py-4">{user.name}</td>
@@ -121,23 +127,40 @@ const UserManagement = () => {
                                     </tr>
                                 )
                         }
-
-
                     </tbody>
                 </table>
                 <>
-                    <div className='space-x-4'>
-                        <button>Previous</button>
-                        {
-                            disablenextButton && (
-                                <button
-                                    onClick={handlePagNextButton}
-
-                                >
-                                    next
-                                </button>
-                            )
-                        }
+                    <div className='flex justify-between items-center mt-4 mx-4'>
+                        <p>Showing {currentPage} to {endIndex} of {SelectedDateList().length} Users.</p>
+                        <div className='flex space-x-4'>
+                            <button
+                                onClick={handlePrevPage}
+                                disabled={currentPage === 1}
+                                className={`px-4 py-2 rounded-md bg-gray-300  ${currentPage === 1 ? "cursor-not-allowed" : ""}`}
+                            >
+                                Previous
+                            </button>
+                            <div>
+                                {
+                                    Array.from({ length: totalPages }, (_, index) => index + 1).map((page, index) => (
+                                        <button
+                                            key={index}
+                                            onClick={() => setCurrentPage(page)}
+                                            className={`px-3 py-2 mr-2 rounded-md ${currentPage === page ? "bg-[#7B9D51] text-white" : "bg-gray-200 text-gray-700"}`}
+                                        >
+                                            {page}
+                                        </button>
+                                    ))
+                                }
+                            </div>
+                            <button
+                                onClick={handleNextPage}
+                                disabled={currentPage === totalPages}
+                                className={`px-4 py-2 rounded-md bg-gray-300  ${currentPage === totalPages ? "cursor-not-allowed" : ""}`}
+                            >
+                                Next
+                            </button>
+                        </div>
                     </div>
                 </>
             </div>

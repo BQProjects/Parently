@@ -13,6 +13,7 @@ const EBookDraft = () => {
     const [selectedAccessLevel, setSelectedAccessLevel] = React.useState("all");
     const [search, setSearch] = React.useState("");
     const [PublishPopUp, setPublishPopUp] = React.useState(false);
+    const [currentPage, setCurrentPage] = React.useState(1);
 
     React.useEffect(() => {
         const FetchPublishedBooks = () => {
@@ -49,6 +50,24 @@ const EBookDraft = () => {
             return SelectedAccessLevel().filter((book) => book.title.toLowerCase().includes(search.toLowerCase()));
         }
     }
+
+    const itemsPerPage = 4;
+    const TotalItems = SearchedList().length;
+    const totalPages = Math.ceil(TotalItems / itemsPerPage);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages)
+            setCurrentPage(currentPage + 1);
+    }
+
+    const handlePrevPage = () => {
+        if (currentPage > 1)
+            setCurrentPage(currentPage - 1);
+    }
+
+    const initalIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = initalIndex + itemsPerPage;
+    const pageData = SearchedList().slice(initalIndex, endIndex);
 
     return (
         <div className='font-Inter mx-2 mb-12'>
@@ -108,7 +127,7 @@ const EBookDraft = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {SearchedList().length > 0 ? SearchedList().map((data, index) => (
+                    {pageData.length > 0 ? pageData.map((data, index) => (
                         <tr key={index} className="bg-[#f1f2f0]">
                             <td className="border border-gray-300 px-4 py-4 text-center">{`BOOK${String(index + 1).padStart(3, "0")}`}</td>
                             <td className="border border-gray-300 px-4 py-4">
@@ -127,7 +146,7 @@ const EBookDraft = () => {
                             <td className="border border-gray-300 px-4 py-4">
                                 <select
                                     value={data.AccessLevel}
-                                    onChange={(e) => {Updating_Access_Level(data.id, e.target.value)}}
+                                    onChange={(e) => { Updating_Access_Level(data.id, e.target.value) }}
                                 >
                                     <option value={data.AccessLevel}>{data.AccessLevel}</option>
                                     <option value={`${data.AccessLevel !== "Free" ? `Free` : `Premium`}`}>
@@ -145,7 +164,7 @@ const EBookDraft = () => {
                                     Delete
                                 </button>
                                 <button
-                                    onClick={() => {Updating_e_Book_Status(data.id, "publish"); setPublishPopUp(!PublishPopUp)}}
+                                    onClick={() => { Updating_e_Book_Status(data.id, "publish"); setPublishPopUp(!PublishPopUp) }}
                                     className='w-15 bg-[#7B9D51] text-sm py-1.5 cursor-pointer rounded-md border-1 text-white'
                                 >
                                     Publish
@@ -154,11 +173,42 @@ const EBookDraft = () => {
                         </tr>
                     )) : (
                         <tr>
-                            <td colSpan={7} className="text-center py-4">No Published Videos Found</td>
+                            <td colSpan={7} className="text-center py-4">No Drafted eBooks Found</td>
                         </tr>
                     )}
                 </tbody>
             </table>
+
+            <div className='flex justify-between items-center mt-4 mx-4'>
+                <p> Showing {currentPage} to {endIndex} of {SearchedList().length} Drafted ebooks </p>
+                <div className='flex space-x-4'>
+                    <button
+                        onClick={handlePrevPage}
+                        disabled={currentPage === 1}
+                        className={`px-4 py-2 rounded-md bg-gray-300  ${currentPage === 1 ? "cursor-not-allowed" : ""}`}
+                    >
+                        Previous
+                    </button>
+                    {
+                        Array.from({ length: totalPages }, (_, index) => index + 1).map((page, index) => (
+                            <p
+                                key={index}
+                                onClick={() => setCurrentPage(page)}
+                                className={`px-3 py-2 mr-2 rounded-md ${currentPage === page ? "bg-[#7B9D51] text-white" : "bg-gray-200 text-gray-700"}`}
+                            >
+                                {page}
+                            </p>
+                        ))
+                    }
+                    <button
+                        onClick={handleNextPage}
+                        disabled={currentPage === totalPages}
+                        className={`px-4 py-2 rounded-md bg-gray-300  ${currentPage === totalPages ? "cursor-not-allowed" : ""}`}
+                    >
+                        Next
+                    </button>
+                </div>
+            </div>
 
             {deleteVideo && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center font-Inter">
@@ -190,7 +240,7 @@ const EBookDraft = () => {
                     <div className="relative bg-white rounded-lg p-6 w-96 shadow-lg z-10 flex flex-col items-center">
                         <h2 className="text-xl font-semibold mb-2">Upload complete</h2>
                         <p className="mb-6">your eBook has been published successfully.</p>
-                        <button 
+                        <button
                             onClick={() => setPublishPopUp(!publishedBooks)}
                             className='bg-gray-300 px-6 w-40 py-2 rounded-md cursor-pointer font-semibold'
                         >

@@ -12,6 +12,7 @@ const ViewAllPublishedBooks = () => {
     const [selectedCategory, setSelectedCategory] = React.useState("all");
     const [selectedAccessLevel, setSelectedAccessLevel] = React.useState("all");
     const [search, setSearch] = React.useState("");
+    const [currentPage, setCurrentPage] = React.useState(1);
 
     React.useEffect(() => {
 
@@ -37,7 +38,7 @@ const ViewAllPublishedBooks = () => {
     const SelectedAccessLevel = () => {
         if (selectedAccessLevel.toLowerCase() === "all")
             return SelectedCatList();
-        else{
+        else {
             return SelectedCatList().filter((booksData) => booksData.AccessLevel.toLowerCase() === selectedAccessLevel.toLowerCase())
         }
     }
@@ -49,6 +50,24 @@ const ViewAllPublishedBooks = () => {
             return SelectedAccessLevel().filter((book) => book.title.toLowerCase().includes(search.toLowerCase()));
         }
     }
+
+    const itemsPerPage = 4;
+    const TotalItems = SearchedList().length;
+    const totalPages = (TotalItems / itemsPerPage);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages)
+            setCurrentPage(currentPage + 1);
+    }
+
+    const handlePrevPage = () => {
+        if (currentPage > 1)
+            setCurrentPage(currentPage - 1);
+    }
+
+    const initalIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = initalIndex + itemsPerPage;
+    const pageData = SearchedList().slice(initalIndex, endIndex);
 
     return (
         <div className='font-Inter mx-2 mb-12'>
@@ -80,14 +99,14 @@ const ViewAllPublishedBooks = () => {
                         <IoIosArrowDown className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-600" />
                     </div>
                     <div className="relative flex items-center w-[60%]">
-                        <select 
+                        <select
                             value={selectedAccessLevel}
                             onChange={(e) => setSelectedAccessLevel(e.target.value)}
                             placeholder="Filter by Access Level"
                             className='border-[#adc98c] border-1 pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer'>
                             {AccessLevel().map((AccessLevel, index) => (
-                                    <option key={index} value={AccessLevel.toLowerCase()}>{AccessLevel}</option>
-                                ))
+                                <option key={index} value={AccessLevel.toLowerCase()}>{AccessLevel}</option>
+                            ))
                             }
                         </select>
                         <IoIosArrowDown className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-600" />
@@ -108,7 +127,7 @@ const ViewAllPublishedBooks = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {SearchedList().length > 0 ? SearchedList().map((data, index) => (
+                    {pageData.length > 0 ? pageData.map((data, index) => (
                         <tr key={index} className="bg-[#f1f2f0]">
                             <td className="border border-gray-300 px-4 py-4 text-center">{`BOOK${String(index + 1).padStart(3, "0")}`}</td>
                             <td className="border border-gray-300 px-4 py-4">
@@ -138,11 +157,42 @@ const ViewAllPublishedBooks = () => {
                         </tr>
                     )) : (
                         <tr>
-                            <td colSpan={7} className="text-center py-4">No Published Videos Found</td>
+                            <td colSpan={7} className="text-center py-4">No Published eBooks Found</td>
                         </tr>
                     )}
                 </tbody>
             </table>
+
+            <div className='flex justify-between items-center mt-4 mx-4'>
+                <p>Showing {currentPage} to {endIndex} of {SearchedList().length} Published eBooks.</p>
+                <div className='flex space-x-4'>
+                    <button
+                        onClick={handlePrevPage}
+                        disabled={currentPage === 1}
+                        className={`px-4 py-2 rounded-md bg-gray-300  ${currentPage === 1 ? "cursor-not-allowed" : ""}`}
+                    >
+                        Previous
+                    </button>
+                    {
+                        Array.from({ length: totalPages }, (_, index) => index + 1).map((page, index) => (
+                            <button
+                                key={index}
+                                onClick={setCurrentPage(page)}
+                                className={`px-3 py-2 mr-2 rounded-md ${currentPage === page ? "bg-[#7B9D51] text-white" : "bg-gray-200 text-gray-700"}`}
+                            >
+                                {page}
+                            </button>
+                        ))
+                    }
+                    <button
+                        onClick={handleNextPage}
+                        disabled={currentPage === totalPages}
+                        className={`px-4 py-2 rounded-md bg-gray-300  ${currentPage === totalPages ? "cursor-not-allowed" : ""}`}
+                    >
+                        Next
+                    </button>
+                </div>
+            </div>
 
             {deleteVideo && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center">

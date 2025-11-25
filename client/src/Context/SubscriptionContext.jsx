@@ -8,7 +8,7 @@ export const SubscriptionProvider = ({ children }) => {
 
     const Add_New_Plan = (planData) => {
         const plan_with_ID = { ...planData, id: Date.now() };
-        setSubscriptionPlans(...subscriptionPlans, plan_with_ID);
+        setSubscriptionPlans([...subscriptionPlans, plan_with_ID]);
     }
 
     console.log("subscription Plans Data: ", subscriptionPlans);
