@@ -1,69 +1,69 @@
-import React from 'react';
+import React from 'react'
 import { IoSearch } from "react-icons/io5";
 import Demo_Image from "../../assets/Images/Demo_Image.jpg"
 
-const ListedVideos = () => {
+const Qued_Videos = () => {
 
-    const videosData = [
+    const videos = [
         {
             id: 1,
-            Thumbnail: Demo_Image,
-            DateOfPublish: "2025-11-20",
-            Category: "Play"
+            thumbnail: Demo_Image,
+            title: "Fun at the Playground",
+            category: "Play"
         },
         {
             id: 2,
-            Thumbnail: Demo_Image,
-            DateOfPublish: "2025-11-18",
-            Category: "Shop"
+            thumbnail: Demo_Image,
+            title: "Shopping Guide for Kids",
+            category: "Shop"
         },
         {
             id: 3,
-            Thumbnail: Demo_Image,
-            DateOfPublish: "2025-11-15",
-            Category: "Dance"
+            thumbnail: Demo_Image,
+            title: "Basic Dance Moves Tutorial",
+            category: "Dance"
         },
         {
             id: 4,
-            Thumbnail: Demo_Image,
-            DateOfPublish: "2025-11-12",
-            Category: "Play"
+            thumbnail: Demo_Image,
+            title: "Outdoor Play Activities",
+            category: "Play"
         },
         {
             id: 5,
-            Thumbnail: Demo_Image,
-            DateOfPublish: "2025-11-10",
-            Category: "Shop"
+            thumbnail: Demo_Image,
+            title: "Kids Shopping Adventure",
+            category: "Shop"
         },
         {
             id: 6,
-            Thumbnail: Demo_Image,
-            DateOfPublish: "2025-11-08",
-            Category: "Dance"
+            thumbnail: Demo_Image,
+            title: "Dance Workout for Children",
+            category: "Dance"
         },
         {
             id: 7,
-            Thumbnail: Demo_Image,
-            DateOfPublish: "2025-11-05",
-            Category: "Play"
+            thumbnail: Demo_Image,
+            title: "Playground Safety Tips",
+            category: "Play"
         },
         {
             id: 8,
-            Thumbnail: Demo_Image,
-            DateOfPublish: "2025-11-02",
-            Category: "Shop"
+            thumbnail: Demo_Image,
+            title: "Online Shopping Basics",
+            category: "Shop"
         },
         {
             id: 9,
-            Thumbnail: Demo_Image,
-            DateOfPublish: "2025-10-30",
-            Category: "Dance"
+            thumbnail: Demo_Image,
+            title: "Kids Freestyle Dance",
+            category: "Dance"
         },
         {
             id: 10,
-            Thumbnail: Demo_Image,
-            DateOfPublish: "2025-10-28",
-            Category: "Play"
+            thumbnail: Demo_Image,
+            title: "Indoor Play Activities",
+            category: "Play"
         }
     ];
 
@@ -73,10 +73,11 @@ const ListedVideos = () => {
 
     const SearchList = () => {
         if (searchedVideos === "")
-            return videosData;
+            return videos
         else
-            return videosData.filter((video) => video.Category.toLowerCase().includes(searchedVideos.toLowerCase())
-                || video.DateOfPublish.toLowerCase().includes(searchedVideos.toLowerCase()))
+            return videos.filter((video) => video.title.toLowerCase().includes(searchedVideos.toLowerCase()) ||
+                video.category.toLowerCase().includes(searchedVideos.toLowerCase())
+            )
     }
 
     const itemsPerPage = 4;
@@ -94,12 +95,12 @@ const ListedVideos = () => {
     }
 
     const initalIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = initalIndex + itemsPerPage;
+    const endIndex = initalIndex + itemsPerPage
     const pageData = SearchList().slice(initalIndex, endIndex);
 
     return (
         <div className='font-Inter mx-2 mb-12'>
-            <h1 className='font-medium text-2xl mt-4 ml-2'>Listed Videos</h1>
+            <h1 className='font-medium text-2xl mt-4 ml-2'>Que Videos</h1>
             <div className='border-[#adc98c] border-1 py-8 px-8 rounded-md flex my-4'>
                 <div className="relative flex items-center w-[120%]">
                     <input
@@ -118,33 +119,33 @@ const ListedVideos = () => {
                     <tr className="bg-[#adc98c] text-black">
                         <th className="border border-gray-300 px-4 py-4 text-center">Video ID</th>
                         <th className="border border-gray-300 px-4 py-4 text-center">Thumbnail</th>
-                        <th className="border border-gray-300 px-4 py-4 text-center">Date of publish</th>
+                        <th className="border border-gray-300 px-4 py-4 text-center">Title</th>
                         <th className="border border-gray-300 px-4 py-4 text-center">Category</th>
                         <th className="border border-gray-300 px-4 py-4 text-center">Actions</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     {
                         pageData.length > 0 ? pageData.map((video, index) => (
                             <tr key={index} className="bg-[#f1f2f0]">
                                 <td className="border border-gray-300 px-4 py-4 text-center">{`VID${String(index + 1).padStart(3, "0")}`}</td>
                                 <td className="border border-gray-300 px-4 py-4 flex items-center justify-center">
-                                    <img src={video.Thumbnail} alt={video.id} className='h-16' />
+                                    <img src={video.thumbnail} alt={video.id} className='h-16' />
                                 </td>
-                                <td className="border border-gray-300 px-4 py-4 text-center">{video.DateOfPublish}</td>
-                                <td className="border border-gray-300 px-4 py-4 text-center">{video.Category}</td>
+                                <td className="border border-gray-300 px-4 py-4 text-center">{video.title}</td>
+                                <td className="border border-gray-300 px-4 py-4 text-center">{video.category}</td>
                                 <td className="border border-gray-300 px-4 py-4 text-center space-x-4">
-                                    <button className='w-15 bg-gray-200 text-sm py-1.5 cursor-pointer rounded-md border-1'>
-                                        view
-                                    </button>
+                                    <button className='w-15 bg-gray-200 text-sm py-1.5 cursor-pointer rounded-md border-1'>View</button>
                                     <button className='w-20 bg-[#7B9D51] text-sm py-1.5 cursor-pointer rounded-md border-1 text-white'
-                                        onClick={() => {setshowDeletePopUp(!showDeletePopUp)}}
+                                        onClick={() => setshowDeletePopUp(!showDeletePopUp)}
                                     >
                                         Delete
                                     </button>
                                 </td>
                             </tr>
-                        )) : (
+                        )
+                        ) : (
                             <tr>
                                 <td colSpan={7} className="text-center py-4">No Published eBooks Found</td>
                             </tr>
@@ -154,25 +155,24 @@ const ListedVideos = () => {
             </table>
 
             <div className='flex justify-between items-center mt-4 mx-4'>
-                <p>Showing {currentPage} to {endIndex} of {totalPages} Videos</p>
-
+                <p>Showing {currentPage} to {endIndex} of {SearchList().length} Q Video's.</p>
                 <div className='flex space-x-4'>
                     <button
                         onClick={handlePrevPage}
                         disabled={currentPage === 1}
                         className={`px-4 py-2 rounded-md bg-gray-300  ${currentPage === 1 ? "cursor-not-allowed" : ""}`}
                     >
-                        prev
+                        Prev
                     </button>
                     {
                         Array.from({ length: totalPages }, (_, index) => index + 1).map((page, index) => (
-                            <button
+                            <p
                                 key={index}
-                                onClick={() => setCurrentPage(page) }
+                                onClick={() => { setCurrentPage(page) }}
                                 className={`px-3 py-2 mr-2 rounded-md ${currentPage === page ? "bg-[#7B9D51] text-white" : "bg-gray-200 text-gray-700"}`}
                             >
                                 {page}
-                            </button>
+                            </p>
                         ))
                     }
                     <button
@@ -180,7 +180,7 @@ const ListedVideos = () => {
                         disabled={currentPage === totalPages}
                         className={`px-4 py-2 rounded-md bg-gray-300  ${currentPage === totalPages ? "cursor-not-allowed" : ""}`}
                     >
-                        next
+                        Next
                     </button>
                 </div>
             </div>
@@ -216,4 +216,4 @@ const ListedVideos = () => {
     )
 }
 
-export default ListedVideos
+export default Qued_Videos

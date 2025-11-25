@@ -53,7 +53,7 @@ const ViewAllPublishedBooks = () => {
 
     const itemsPerPage = 4;
     const TotalItems = SearchedList().length;
-    const totalPages = (TotalItems / itemsPerPage);
+    const totalPages = Math.ceil(TotalItems / itemsPerPage);
 
     const handleNextPage = () => {
         if (currentPage < totalPages)
@@ -177,7 +177,7 @@ const ViewAllPublishedBooks = () => {
                         Array.from({ length: totalPages }, (_, index) => index + 1).map((page, index) => (
                             <button
                                 key={index}
-                                onClick={setCurrentPage(page)}
+                                onClick={() => { setCurrentPage(page) }}
                                 className={`px-3 py-2 mr-2 rounded-md ${currentPage === page ? "bg-[#7B9D51] text-white" : "bg-gray-200 text-gray-700"}`}
                             >
                                 {page}

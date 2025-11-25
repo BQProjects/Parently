@@ -21,7 +21,7 @@ import E_books from "../pages/adminEbooks/Ebooks";
 import Field_Management from "../pages/adminEbooks/FieldManagement";
 import Create_New_Notification from "../pages/AdminPushNotification/CreateNewNotification";
 import Listed_Videos from "../pages/AdminPushNotification/ListedVideos";
-import Q_Videos from "../pages/AdminPushNotification/Q_Videos";
+import Q_Videos from "../pages/AdminPushNotification/Qued_Videos";
 import AddNewEBook from "../pages/adminEbooks/AddNewEBook";
 import ViewAllPublishedBooks from "../pages/adminEbooks/ViewAllPublishedBooks";
 import EBookDraft from "../pages/adminEbooks/EBookDraft";
