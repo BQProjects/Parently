@@ -3,4 +3,9 @@
 
 @theme {
   --font-Inter: "Inter", sans-serif;
+  --font-Inter-Regular: "Inter", sans-serif;
+  --font-Inter-Medium: "Inter", sans-serif;
+  --font-Inter-SemiBold: "Inter", sans-serif;
+  --font-Inter-Bold: "Inter", sans-serif;
+  --font-Inter-ExtraBold: "Inter", sans-serif;
 }
