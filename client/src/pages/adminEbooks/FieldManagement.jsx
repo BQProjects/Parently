@@ -25,7 +25,7 @@ const FieldManagement = () => {
     return (
         <div className='font-Inter mx-2 mb-12'>
             <h1 className='font-medium text-2xl mt-4 ml-2'>Field Management</h1>
-            <div className='border-[#adc98c] border-1 py-8 px-8 rounded-md flex my-4 space-x-16' aria-label="Tabs">
+            <div className='border-[#adc98c] border py-8 px-8 rounded-md flex my-4 space-x-16' aria-label="Tabs">
                 {
                     tabs.map((tab, index) => (
                         <button
@@ -44,7 +44,7 @@ const FieldManagement = () => {
                 }
             </div>
 
-            <div className="p-4 sm:p-6 lg:p-8 transition-all duration-300 ease-in-out" >
+            <div>
                 {renderComponent()}
             </div>
         </div>

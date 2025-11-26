@@ -6,7 +6,7 @@ import { EbookProvider } from "./Context/EbookContext";
 import { UsersProvider } from "./Context/UsersContext";
 import { SubscriptionProvider } from "./Context/SubscriptionContext";
 import { AdminProvider } from "./Context/AdminContext";
-import { FieldManagementContext } from "./Context/fieldManagementContext";
+import { FieldManagementProvider } from "./Context/fieldManagementContext";
 
 const App = () => {
   return (
@@ -16,9 +16,9 @@ const App = () => {
           <UsersProvider>
             <SubscriptionProvider>
               <AdminProvider>
-                <FieldManagementContext>
+                <FieldManagementProvider>
                   <RouterProvider router={router} />
-                </FieldManagementContext>
+                </FieldManagementProvider>
               </AdminProvider>
             </SubscriptionProvider>
           </UsersProvider>
