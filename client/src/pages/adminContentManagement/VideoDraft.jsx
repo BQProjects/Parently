@@ -3,35 +3,35 @@ import { useVideo } from "../../Context/VideoContext";
 import { IoIosArrowDown } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
-const PublishedVideos = () => {
+const VideoDraft = () => {
   const navigate = useNavigate();
-  const { VideosData, RemoveVideo } = useVideo();
+  const { VideosData, RemoveVideo, UpdateVideo } = useVideo();
   const [deleteVideo, setDeleteVideo] = React.useState(null);
   const [search, setSearch] = React.useState("");
   const [categoryFilter, setCategoryFilter] = React.useState("");
   const [accessFilter, setAccessFilter] = React.useState("");
 
-  const [PublishedVideos, setPublishedVideos] = React.useState([]);
+  const [DraftVideos, setDraftVideos] = React.useState([]);
 
   React.useEffect(() => {
-    let filtered = VideosData.filter((v) => !v.isDraft);
+    let filtered = VideosData.filter((v) => v.isDraft);
     if (search) {
       filtered = filtered.filter((v) =>
         v.title?.toLowerCase().includes(search.toLowerCase())
       );
     }
-    if (categoryFilter && categoryFilter !== "All") {
+    if (categoryFilter) {
       filtered = filtered.filter((v) => v.category === categoryFilter);
     }
-    if (accessFilter && accessFilter !== "All") {
+    if (accessFilter) {
       filtered = filtered.filter((v) => v.access_Level === accessFilter);
     }
-    setPublishedVideos(filtered);
+    setDraftVideos(filtered);
   }, [VideosData, search, categoryFilter, accessFilter]);
 
   return (
     <div className="font-Inter mx-2">
-      <h1 className="font-medium text-2xl mt-4 ml-2">All Published Videos</h1>
+      <h1 className="font-medium text-2xl mt-4 ml-2">All Draft Videos</h1>
       <div className="border-[#7B9D51] border py-8 px-8 rounded-md flex space-x-4 my-4">
         <input
           type="text"
@@ -40,15 +40,19 @@ const PublishedVideos = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <div className="relative flex items-center w-[20%]">
+        <div className="relative flex items-center w-1/5">
           <select
             className="border-[#adc98c] border pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer"
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
           >
-            <option value="All">All Categories</option>
+            <option value="">All Categories</option>
             {Array.from(
-              new Set(VideosData.map((v) => v.category).filter(Boolean))
+              new Set(
+                VideosData.filter((v) => v.isDraft)
+                  .map((v) => v.category)
+                  .filter(Boolean)
+              )
             ).map((cat, i) => (
               <option key={i} value={cat}>
                 {cat}
@@ -57,15 +61,19 @@ const PublishedVideos = () => {
           </select>
           <IoIosArrowDown className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-600" />
         </div>
-        <div className="relative flex items-center w-[20%]">
+        <div className="relative flex items-center w-1/5">
           <select
             className="border-[#adc98c] border pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer"
             value={accessFilter}
             onChange={(e) => setAccessFilter(e.target.value)}
           >
-            <option value="All">All Access Levels</option>
+            <option value="">All Access Levels</option>
             {Array.from(
-              new Set(VideosData.map((v) => v.access_Level).filter(Boolean))
+              new Set(
+                VideosData.filter((v) => v.isDraft)
+                  .map((v) => v.access_Level)
+                  .filter(Boolean)
+              )
             ).map((level, i) => (
               <option key={i} value={level}>
                 {level}
@@ -103,8 +111,8 @@ const PublishedVideos = () => {
           </tr>
         </thead>
         <tbody>
-          {PublishedVideos.length > 0 ? (
-            PublishedVideos.map((data, index) => (
+          {DraftVideos.length > 0 ? (
+            DraftVideos.map((data, index) => (
               <tr key={index} className="bg-[#d8e8c6]">
                 <td className="border border-gray-300 px-4 py-4 text-center">{`VID${String(
                   index + 1
@@ -154,13 +162,21 @@ const PublishedVideos = () => {
                   >
                     Delete
                   </button>
+                  <button
+                    className="w-15 bg-gray-200 text-sm py-2 cursor-pointer rounded-md border"
+                    onClick={() => {
+                      UpdateVideo(data.id, { isDraft: false });
+                    }}
+                  >
+                    Publish
+                  </button>
                 </td>
               </tr>
             ))
           ) : (
             <tr>
               <td colSpan={7} className="text-center py-4">
-                No Published Videos Found
+                No Draft Videos Found
               </td>
             </tr>
           )}
@@ -197,4 +213,4 @@ const PublishedVideos = () => {
   );
 };
 
-export default PublishedVideos;
+export default VideoDraft;

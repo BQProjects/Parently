@@ -16,7 +16,6 @@ import ManageExperts from "../pages/AdminExperts/ManageExperts";
 import Videos from "../pages/adminContentManagement/Videos";
 import AddNewVideo from "../pages/adminContentManagement/AddNewVideo";
 import PublishedVideos from "../pages/adminContentManagement/PublishedVideos";
-import DraftVideos from "../pages/adminContentManagement/DraftVideos";
 import E_books from "../pages/adminEbooks/Ebooks";
 import Field_Management from "../pages/adminEbooks/FieldManagement";
 import Create_New_Notification from "../pages/AdminPushNotification/CreateNewNotification";
@@ -27,6 +26,9 @@ import ViewAllPublishedBooks from "../pages/adminEbooks/ViewAllPublishedBooks";
 import EBookDraft from "../pages/adminEbooks/EBookDraft";
 import UserDetail from "../pages/AdminUserManagement/UserDetail";
 import AdminCreate from "../pages/adminAuth/AdminCreate";
+import UploadTimedText from "../pages/adminContentManagement/UploadTimedText";
+import VideoDetails from "../pages/adminContentManagement/VideoDetails";
+import VideoDraft from "../pages/adminContentManagement/VideoDraft";
 
 const Router = createBrowserRouter([
   {
@@ -34,7 +36,7 @@ const Router = createBrowserRouter([
     element: <Layout />,
     children: [
       { path: "/", element: <AdminLogin /> },
-      { path: "create-account", element: <AdminCreate />},
+      { path: "create-account", element: <AdminCreate /> },
     ],
   },
   {
@@ -49,38 +51,51 @@ const Router = createBrowserRouter([
           { path: "churn_rate", element: <ChurnDashboard /> },
           { path: "revenue", element: <Revenue_Dashboard /> },
           { path: "total_watch", element: <TotalWatchDashboard /> },
-        ]
+        ],
       },
-      { path: "content-management", element: <ContentManagement />,
+      {
+        path: "content-management",
+        element: <ContentManagement />,
         children: [
-          { path: "videos", element: <Videos />,
+          {
+            path: "videos",
+            element: <Videos />,
             children: [
               { path: "add-new-video", element: <AddNewVideo /> },
+              { path: "upload-timed-text", element: <UploadTimedText /> },
+              { path: "video-details", element: <VideoDetails /> },
+              { path: "video-draft", element: <VideoDraft /> },
               { path: "published-videos", element: <PublishedVideos /> },
-              { path: "draft-videos", element: <DraftVideos /> },
-            ]
+            ],
           },
-          { path: "e-books", element: <E_books />,
+          {
+            path: "e-books",
+            element: <E_books />,
             children: [
-                { path: "add-new-e-book", element: <AddNewEBook /> },
-                { path: "published-e-books", element: <ViewAllPublishedBooks /> },
-                { path: "e-book-draft", element: <EBookDraft /> },
-            ]
+              { path: "add-new-e-book", element: <AddNewEBook /> },
+              { path: "published-e-books", element: <ViewAllPublishedBooks /> },
+              { path: "e-book-draft", element: <EBookDraft /> },
+            ],
           },
           { path: "field-management", element: <Field_Management /> },
-        ]
+        ],
       },
-      { path: "user-management", element: <UserManagement />},
-      { path: "user-management/user-detail/:id", element: <UserDetail />},
+      { path: "user-management", element: <UserManagement /> },
+      { path: "user-management/user-detail/:id", element: <UserDetail /> },
       { path: "subscription-management", element: <SubscriptionManagement /> },
-      { path: "push-notification-management", element: <PushNotificationManagement />,
+      {
+        path: "push-notification-management",
+        element: <PushNotificationManagement />,
         children: [
-          { path: "create-new-notification", element:<Create_New_Notification />},
+          {
+            path: "create-new-notification",
+            element: <Create_New_Notification />,
+          },
           { path: "listed-videos", element: <Listed_Videos /> },
           { path: "q-videos", element: <Q_Videos /> },
-        ]
-       },
-      { path: "manage-experts", element:<ManageExperts /> },
+        ],
+      },
+      { path: "manage-experts", element: <ManageExperts /> },
     ],
   },
 ]);
