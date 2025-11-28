@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const PublishedVideos = () => {
   const navigate = useNavigate();
-  const { VideosData, RemoveVideo } = useVideo();
+  const { VideosData, RemoveVideo, UpdateVideo } = useVideo();
   const [deleteVideo, setDeleteVideo] = React.useState(null);
   const [search, setSearch] = React.useState("");
   const [categoryFilter, setCategoryFilter] = React.useState("");
@@ -119,15 +119,16 @@ const PublishedVideos = () => {
                   {data.category}
                 </td>
                 <td className="border border-gray-300 px-4 py-4 text-center">
-                  <span
-                    className={`${
-                      data.access_Level === "Free"
-                        ? "bg-[#98a883] text-black"
-                        : "bg-[#7B9D51] text-white"
-                    } px-2 py-1 rounded`}
+                  <select
+                    value={data.access_Level}
+                    onChange={(e) =>
+                      UpdateVideo(data.id, { access_Level: e.target.value })
+                    }
+                    className="px-2 py-1 rounded border border-gray-300 outline-none"
                   >
-                    {data.access_Level}
-                  </span>
+                    <option value="Free">Free</option>
+                    <option value="Premium">Premium</option>
+                  </select>
                 </td>
                 <td className="border border-gray-300 px-4 py-4 text-center">
                   {data.date
