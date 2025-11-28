@@ -7,6 +7,7 @@ import { UsersProvider } from "./Context/UsersContext";
 import { SubscriptionProvider } from "./Context/SubscriptionContext";
 import { AdminProvider } from "./Context/AdminContext";
 import { FieldManagementProvider } from "./Context/fieldManagementContext";
+import { ExpertProvider } from "./Context/ExpertContext";
 
 const App = () => {
   return (
@@ -16,16 +17,18 @@ const App = () => {
           <UsersProvider>
             <SubscriptionProvider>
               <AdminProvider>
-                <FieldManagementProvider>
-                  <RouterProvider router={router} />
-                </FieldManagementProvider>
+                <ExpertProvider>
+                  <FieldManagementProvider>
+                    <RouterProvider router={router} />
+                  </FieldManagementProvider>
+                </ExpertProvider>
               </AdminProvider>
             </SubscriptionProvider>
           </UsersProvider>
         </EbookProvider>
       </VideoProvider>
     </>
-  )
+  );
 };
 
 export default App;

@@ -13,6 +13,7 @@ import UserManagement from "../pages/AdminUserManagement/UserManagement";
 import SubscriptionManagement from "../pages/AdminSubscriptionManagement/SubscriptionManagement";
 import PushNotificationManagement from "../pages/AdminPushNotification/PushNotificationManagement";
 import ManageExperts from "../pages/AdminExperts/ManageExperts";
+import AddEditExpert from "../pages/AdminExperts/AddEditExpert";
 import Videos from "../pages/adminContentManagement/Videos";
 import AddNewVideo from "../pages/adminContentManagement/AddNewVideo";
 import PublishedVideos from "../pages/adminContentManagement/PublishedVideos";
@@ -96,6 +97,7 @@ const Router = createBrowserRouter([
         ],
       },
       { path: "manage-experts", element: <ManageExperts /> },
+      { path: "manage-experts/add-edit", element: <AddEditExpert /> },
     ],
   },
 ]);

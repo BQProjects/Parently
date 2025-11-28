@@ -6,9 +6,10 @@ import { useVideo } from "../../Context/VideoContext";
 function UploadTimedText() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { AddVideo } = useVideo();
+  const { AddVideo, UpdateVideo } = useVideo();
   const video = location.state?.video || {};
-  const [timedTexts, setTimedTexts] = useState([
+  const isEdit = location.state?.isEdit || false;
+  const [timedTexts, setTimedTexts] = useState(video.timedTexts || [
     { time: "", text: "" },
     { time: "", text: "" },
   ]);
@@ -33,7 +34,11 @@ function UploadTimedText() {
 
   const handleSaveDraft = () => {
     const videoWithTimedText = { ...video, timedTexts, isDraft: true };
-    AddVideo(videoWithTimedText);
+    if (isEdit) {
+      UpdateVideo(video.id, videoWithTimedText);
+    } else {
+      AddVideo(videoWithTimedText);
+    }
     setSuccess("Your video has been saved to draft.");
     setTimeout(() => {
       setSuccess("");
@@ -48,7 +53,11 @@ function UploadTimedText() {
 
   const handleSavePublish = () => {
     const videoWithTimedText = { ...video, timedTexts, isDraft: false };
-    AddVideo(videoWithTimedText);
+    if (isEdit) {
+      UpdateVideo(video.id, videoWithTimedText);
+    } else {
+      AddVideo(videoWithTimedText);
+    }
     setSuccess("Upload complete — your video has been published successfully.");
     setTimeout(() => {
       setSuccess("");
