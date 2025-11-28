@@ -75,8 +75,18 @@ function VideoDetails() {
                   </div>
                 </div>
               </div>
-              {/* Delete Button */}
-              <div className="flex justify-end mt-6 ">
+              {/* Action Buttons */}
+              <div className="flex justify-end mt-6 space-x-3">
+                <button
+                  onClick={() =>
+                    navigate("/admin/content-management/videos/add-new-video", {
+                      state: { video: video, isEdit: true },
+                    })
+                  }
+                  className="border border-[#7B9D51] text-[#7B9D51] px-8 py-2 rounded-md bg-white hover:bg-[#f3f7ed] transition font-medium"
+                >
+                  Edit
+                </button>
                 <button className="border border-[#d3e1c6] text-[#6B6B6B] px-8 py-2 rounded-md bg-white hover:bg-[#f3f7ed] transition font-medium">
                   Delete
                 </button>

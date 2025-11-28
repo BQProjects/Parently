@@ -151,17 +151,6 @@ const PublishedVideos = () => {
                   </button>
                   <button
                     className="w-15 bg-gray-200 text-sm py-2 cursor-pointer rounded-md border"
-                    onClick={() =>
-                      navigate(
-                        "/admin/content-management/videos/add-new-video",
-                        { state: { video: data, isEdit: true } }
-                      )
-                    }
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="w-15 bg-gray-200 text-sm py-2 cursor-pointer rounded-md border"
                     onClick={() => setDeleteVideo(data)}
                   >
                     Delete
