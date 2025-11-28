@@ -45,7 +45,7 @@ const TotalWatchDashboard = () => {
 
     return (
         <>
-            <div className="border-1 border-[#7B9D51] h-32 w-98 rounded-[10px] flex flex-col justify-between">
+            <div className="border border-[#7B9D51] h-32 w-98 rounded-[10px] flex flex-col justify-between">
                 <div className='flex justify-between mt-4 mx-4 items-center'>
                     <h1 className='font-semibold text-base'>Total Watch Time</h1>
                     <img src={TotalWatch_Time_Logo} />
@@ -59,7 +59,7 @@ const TotalWatchDashboard = () => {
                 </div>
             </div>
 
-            <div className="border-1 border-[#7B9D51] h-[50%] w-full rounded-[10px] mt-4 -mr-2 flex flex-col">
+            <div className="border border-[#7B9D51] h-[50%] w-full rounded-[10px] mt-4 -mr-2 flex flex-col">
                 <div className='flex justify-between my-6 mx-5'>
                     <div className='flex flex-col space-y-0.5'>
                         <h1 className='text-xl font-semibold'>Watch Time Trends</h1>
@@ -131,7 +131,7 @@ const TotalWatchDashboard = () => {
             </div>
 
             <div className='flex space-x-4 mt-4'>
-                <div className='border-1 border-[#7B9D51] h-54 w-98 rounded-[10px] flex flex-col justify-between'>
+                <div className='border border-[#7B9D51] h-54 w-98 rounded-[10px] flex flex-col justify-between'>
                     <div className='flex justify-between mt-4 mx-4 items-center'>
                         <h1 className='font-semibold text-base'>Most Popular Category This Month</h1>
                         <img src={TotalUsers_Icon} />
@@ -150,7 +150,7 @@ const TotalWatchDashboard = () => {
                         </div>
                     </div>
                 </div>
-                <div className='border-1 border-[#7B9D51] h-[50%] w-98 rounded-[10px] flex flex-col justify-between px-6 p-4'>
+                <div className='border border-[#7B9D51] h-[50%] w-98 rounded-[10px] flex flex-col justify-between px-6 p-4'>
                     <h1 className='text-lg font-semibold'>Most Popular Categories</h1>
                     <div className='mt-4'>
                         {

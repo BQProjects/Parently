@@ -45,7 +45,7 @@ const Revenue_Dashboard = () => {
             >
                 {
                     DummyDataofChurn.map((data) => (
-                        <div className='border-1 border-[#7B9D51] h-32 w-[50%] rounded-[10px] flex flex-col justify-between'>
+                        <div className='border border-[#7B9D51] h-32 w-[50%] rounded-[10px] flex flex-col justify-between'>
                             <>
                                 <div className='flex justify-between ml-4 mr-6 mt-4'>
                                     <h1 className='font-semibold'>{data.name}</h1>
@@ -61,7 +61,7 @@ const Revenue_Dashboard = () => {
                 }
             </div>
 
-            <div className="border-1 border-[#7B9D51] h-[50%] w-full rounded-[10px] mt-4 -mr-2 flex flex-col">
+            <div className="border border-[#7B9D51] h-[50%] w-full rounded-[10px] mt-4 -mr-2 flex flex-col">
                 <div className='flex justify-between my-6 mx-5'>
                     <div className='flex flex-col space-y-0.5'>
                         <h1 className='text-xl font-semibold'>Revenue Over Time</h1>

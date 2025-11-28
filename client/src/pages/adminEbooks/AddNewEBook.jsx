@@ -73,7 +73,7 @@ const AddNewEBook = () => {
 
             <h1 className='text-2xl font-medium mb-4'>Add New eBook</h1>
 
-            <div className='border-1 border-gray-300 w-[70%] rounded-lg'>
+            <div className='border border-gray-300 w-[70%] rounded-lg'>
 
                 <div className="mb-6 px-6 pt-6">
                     <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
@@ -218,7 +218,7 @@ const AddNewEBook = () => {
                 <div className='flex justify-end pr-4 mb-4 mr-4 space-x-6'>
                     <button
                         onClick={handleSaveAsDraft}
-                        className='border-1 border-gray-300 px-8 py-2 rounded-md cursor-pointer font-extralight'
+                        className='border border-gray-300 px-8 py-2 rounded-md cursor-pointer font-extralight'
                     >
                         Save as draft
                     </button>

@@ -50,7 +50,7 @@ const UserManagement = () => {
         <>
             <div className='font-Inter mx-2 mb-12'>
                 <h1 className='font-medium text-2xl mt-4 ml-2'>All Registered Users</h1>
-                <div className='border-[#adc98c] border-1 py-8 px-8 rounded-md flex my-4'>
+                <div className='border-[#adc98c] border py-8 px-8 rounded-md flex my-4'>
                     <div className='flex space-x-4 w-full'>
                         <div className='w-[50%] space-y-2'>
                             <h1 className='text-gray-500 text-[14px] tracking-wide'>Filter by Subscription</h1>
@@ -59,7 +59,7 @@ const UserManagement = () => {
                                     value={selectedSubscription}
                                     onChange={(e) => setSelectedSubscription(e.target.value)}
                                     placeholder='Select Subscription'
-                                    className="border-[#adc98c] border-1 pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer"
+                                    className="border-[#adc98c] border pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer"
                                 >
                                     {SubscriptionList().map((sub, index) => (
                                         <option key={index} value={sub} >{sub}</option>
@@ -75,7 +75,7 @@ const UserManagement = () => {
                                     value={selectedDate}
                                     onChange={(e) => setSelectedDate(e.target.value)}
                                     placeholder="Registration Date"
-                                    className="border-[#adc98c] border-1 pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer"
+                                    className="border-[#adc98c] border pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer"
                                 >
                                     {
                                         RegisterationDate().map((date, index) => (
@@ -113,7 +113,7 @@ const UserManagement = () => {
                                         <td className="border border-gray-300 px-4 py-4">{user.status}</td>
                                         <td className="border border-gray-300 px-4 py-4">
                                             <Link to={`user-detail/${user.id}`}>
-                                                <button className='flex flex-col items-center relative left-4 border-1 border-[#adc98c] px-4 py-1 bg-gray-200 rounded-md cursor-pointer'>
+                                                <button className='flex flex-col items-center relative left-4 border border-[#adc98c] px-4 py-1 bg-gray-200 rounded-md cursor-pointer'>
                                                     <FaEye className='text-[#7B9D51]' />
                                                     <p className='text-sm text-gray-600'>User details</p>
                                                 </button>

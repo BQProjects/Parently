@@ -6,6 +6,7 @@ import { MdAdd } from "react-icons/md";
 import Edit_Icon from "../../assets/Images/Edit_Icon.png";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Left_Arrow from '../../assets/Images/LeftArrow.png';
+import line_edit from "../../assets/Images/line-md_edit.png";
 
 const SubscriptionManagement = () => {
 
@@ -130,6 +131,8 @@ const SubscriptionManagement = () => {
         setVisibleSubscriptionFom(false);
     }
 
+    console.log(plans)
+
     return (
         <>
             {visibleSubscriptionForm ? (
@@ -153,7 +156,7 @@ const SubscriptionManagement = () => {
                         <div className='flex justify-end space-x-4 mb-4'>
                             <button
                                 onClick={() => setVisibleSubscriptionFom(false)}
-                                className='border-1 border-[#adc98c] px-4 py-2 rounded-md text-gray-600'
+                                className='border border-[#adc98c] px-4 py-2 rounded-md text-gray-600'
                             >
                                 Cancel
                             </button>
@@ -166,7 +169,7 @@ const SubscriptionManagement = () => {
                             </button>
                         </div>
 
-                        <div className='border-1 border-[#adc98c] py-2 rounded-md'>
+                        <div className='border border-[#adc98c] py-2 rounded-md'>
                             <div className='flex justify-end space-x-4 mr-12 pb-2 mt-4'>
                                 <label className='flex items-center'>
                                     <input
@@ -258,7 +261,7 @@ const SubscriptionManagement = () => {
                                                             )
                                                         }
                                                         placeholder='Enter feature'
-                                                        className='border px-2 py-1 rounded text-black w-[90%] mb-2'
+                                                        className='border px-2 py-2 rounded text-black w-[90%] mb-2'
                                                     />
                                                     <button
                                                         onClick={() => handle_Save_New_Feature(index)}
@@ -271,7 +274,7 @@ const SubscriptionManagement = () => {
                                         ) : (
                                             <>
                                                 <div className='w-full flex items-center'>
-                                                    <p className='w-[90%] border-1 border-[#adc98c] px-4 py-2 rounded-md'>{feature.name}</p>
+                                                    <p className='w-[90%] border border-[#adc98c] px-4 py-2 rounded-md'>{feature.name}</p>
                                                     <button
                                                         onClick={() => handle_Edit_Feature(index)}
                                                         className='ml-3 text-blue-600 relative right-12'
@@ -339,7 +342,7 @@ const SubscriptionManagement = () => {
             ) : (
                 <>
                     {plans.length === 0 ? (
-                        <div className='border-1 border-[#adc98c] border-dashed h-16 mt-20 mx-10 flex justify-center items-center'>
+                        <div className='border border-[#adc98c] border-dashed h-16 mt-20 mx-10 flex justify-center items-center'>
                             <button
                                 onClick={() => setVisibleSubscriptionFom(true)}
                                 className='flex items-center space-x-2'
@@ -349,21 +352,56 @@ const SubscriptionManagement = () => {
                             </button>
                         </div>
                     ) : (
-                        <>
+                        <div className='mb-20'>
+                            <div
+                                className='flex flex-col space-y-1 mt-6 mx-10'
+                            >
+                                <h1 className='text-2xl'>Subscription Management</h1>
+                                <p className='text-sm text-gray-500'>Edit plan details, pricing, and included features.</p>
+                            </div>
                             {plans.length > 0 && plans.map((plan, index) => (
-                                <div key={index}>
-                                    <div>
-                                        <h1>Subscription Management</h1>
-                                    </div>
-                                    <div>
-                                        <h1>{plan.plan_Name}</h1>
-                                        <h1>{plan.pack_Price_Monthly}</h1>
-                                        <h1>{plan.pack_Price_Yearly}</h1>
+                                <div key={index}
+                                    className='mt-2 mx-10 font-Inter'
+                                >
+                                    <img
+                                        src={line_edit}
+                                        className='relative left-[95%] top-12'
+                                    />
+                                    <div className='border border-[#adc98c] rounded-md p-6 space-y-8 flex flex-col'>
+                                        <div className='flex justify-between w-[60%] mb-2'>
+                                            <h1>Plan Name</h1>
+                                            <h1 className='text-gray-500'>{plan.plan_Name}</h1>
+                                        </div>
+                                        {
+                                            plan.pack_Price_Monthly && (
+                                                <div className='flex justify-between w-[60%] mb-2'>
+                                                    <h1>Price per Month (₹)</h1>
+                                                    <h1 className='text-gray-500'>{plan.pack_Price_Monthly}</h1>
+                                                </div>
+                                            )
+                                        }
+                                        {
+                                            plan.pack_Price_Yearly && (
+                                                <div className='flex justify-between w-[60%] mb-2'>
+                                                    <h1>Price per Yearly (₹)</h1>
+                                                    <h1 className='text-gray-500'>{plan.pack_Price_Yearly}</h1>
+                                                </div>
+                                            )
+                                        }
+                                        <div className='mb-2 mt-4'>
+                                            <h1>Features</h1>
+                                            {
+                                                plan.features?.map((feature, index) => (
+                                                    <div key={index} className='flex flex-col my-2'>
+                                                        <p className='border border-[#adc98c] p-3 rounded-md'>{feature.name}</p>
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             ))}
-                            <div className='border-1 border-[#adc98c] border-dashed h-16 mt-20 mx-10 flex justify-center items-center'>
-
+                            <div className='border border-[#adc98c] border-dashed h-16 mt-10 mx-10 flex justify-center items-center'>
                                 <button
                                     onClick={() => setVisibleSubscriptionFom(true)}
                                     className='flex items-center space-x-2'
@@ -372,7 +410,7 @@ const SubscriptionManagement = () => {
                                     <p className='text-gray-500 text-[13px]'>Add New Plan</p>
                                 </button>
                             </div>
-                        </>
+                        </div>
                     )}
                 </>
             )}
