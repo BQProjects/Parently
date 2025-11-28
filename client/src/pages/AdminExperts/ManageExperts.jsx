@@ -56,17 +56,52 @@ const ManageExperts = () => {
 
   const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
-  // Mock booking data - you can replace this with real data
-  const mockBookings = {
-    "FRI-08:00": true,
-    "MON-09:00": true,
-    "WED-10:00": true,
-    "THU-11:00": true,
-    "TUE-12:00": true,
-    "TUE-13:00": true,
-    "THU-14:00": true,
-    "SUN-15:00": true,
-    "FRI-15:00": true,
+  // Mock booking data for each expert - different schedules
+  const getExpertBookings = (expertId) => {
+    const expertBookings = {
+      1: { // Dr. Sarah Johnson - Child Psychology
+        "MON-09:00": true,
+        "WED-10:00": true,
+        "FRI-14:00": true,
+        "TUE-11:00": true,
+        "THU-15:00": true,
+      },
+      2: { // Dr. Michael Chen - Pediatric Nutrition
+        "TUE-08:00": true,
+        "THU-09:00": true,
+        "MON-13:00": true,
+        "WED-14:00": true,
+        "FRI-10:00": true,
+      },
+      3: { // Dr. Emily Rodriguez - Early Childhood Education
+        "MON-08:00": true,
+        "TUE-12:00": true,
+        "WED-15:00": true,
+        "THU-11:00": true,
+        "FRI-09:00": true,
+      },
+      4: { // Dr. David Kim - Behavioral Therapy
+        "MON-10:00": true,
+        "TUE-14:00": true,
+        "WED-09:00": true,
+        "THU-13:00": true,
+        "FRI-11:00": true,
+        "SAT-10:00": true,
+      },
+      5: { // Dr. Lisa Thompson - Speech Therapy
+        "TUE-09:00": true,
+        "WED-11:00": true,
+        "THU-14:00": true,
+        "FRI-13:00": true,
+        "SUN-12:00": true,
+      },
+    };
+    return expertBookings[expertId] || {};
+  };
+
+  const getBookedCount = (expertId) => {
+    const bookings = getExpertBookings(expertId);
+    return Object.values(bookings).filter(booking => booking).length;
   };
 
   return (
@@ -197,7 +232,8 @@ const ManageExperts = () => {
                             </td>
                             {daysOfWeek.map((day) => {
                               const slotKey = `${day}-${time}`;
-                              const isBooked = mockBookings[slotKey];
+                              const expertBookings = getExpertBookings(selectedExpert.id);
+                              const isBooked = expertBookings[slotKey];
                               return (
                                 <td key={day} className="text-center py-2 px-1">
                                   <button
@@ -219,7 +255,7 @@ const ManageExperts = () => {
                   </div>
 
                   <div className="mt-4 text-right text-sm text-gray-500">
-                    1 meeting booked this week
+                    {getBookedCount(selectedExpert.id)} meeting{getBookedCount(selectedExpert.id) !== 1 ? 's' : ''} booked this week
                   </div>
                 </>
               )}
