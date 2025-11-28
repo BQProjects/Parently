@@ -19,19 +19,19 @@ const AdminDashboard = () => {
                         <div className="flex justify-end space-x-4">
                             <button
                                 onClick={() => setActive("yearly")}
-                                className={`px-5 py-2 border-1 border-gray-300 rounded-md ${active === "yearly" ? "bg-[#7B9D51] text-white" : "bg-white text-black"}`}
+                                className={`px-5 py-2 border border-gray-300 rounded-md ${active === "yearly" ? "bg-[#7B9D51] text-white" : "bg-white text-black"}`}
                             >
                                 Yearly
                             </button>
                             <button
                                 onClick={() => setActive("monthly")}
-                                className={`px-5 py-1.5 border-1 border-gray-300 rounded-md ${active === "monthly" ? "bg-[#7B9D51] text-white" : "bg-white text-black"}`}
+                                className={`px-5 py-1.5 border border-gray-300 rounded-md ${active === "monthly" ? "bg-[#7B9D51] text-white" : "bg-white text-black"}`}
                             >
                                 Monthly
                             </button>
                             <button
                                 onClick={() => setActive("weekly")}
-                                className={`px-5 py-1.5 border-1 border-gray-300 rounded-md ${active === "weekly" ? "bg-[#7B9D51] text-white" : "bg-white text-black"}`}
+                                className={`px-5 py-1.5 border border-gray-300 rounded-md ${active === "weekly" ? "bg-[#7B9D51] text-white" : "bg-white text-black"}`}
                             >
                                 Weekly
                             </button>
@@ -43,22 +43,22 @@ const AdminDashboard = () => {
                             active === "yearly" && (
                                 <>
                                     <div className="flex space-x-4 mt-6 font-Inter">
-                                        <Link to="/admin/dashboard/total_users" className="border-1 border-[#7B9D51] h-30 w-78 rounded-[10px]"></Link>
-                                        <div className="border-1 border-[#7B9D51] h-30 w-78 rounded-[10px]"></div>
-                                        <Link to="/admin/dashboard/churn_rate"  className="border-1 border-[#7B9D51] h-30 w-78 rounded-[10px]"></Link>
-                                        <Link to="/admin/dashboard/total_watch" className="border-1 border-[#7B9D51] h-30 w-78 rounded-[10px]"></Link>
+                                        <Link to="/admin/dashboard/total_users" className="border border-[#7B9D51] h-30 w-78 rounded-[10px]"></Link>
+                                        <div className="border border-[#7B9D51] h-30 w-78 rounded-[10px]"></div>
+                                        <Link to="/admin/dashboard/churn_rate"  className="border border-[#7B9D51] h-30 w-78 rounded-[10px]"></Link>
+                                        <Link to="/admin/dashboard/total_watch" className="border border-[#7B9D51] h-30 w-78 rounded-[10px]"></Link>
                                     </div>
 
                                     <div className="flex space-x-4 mt-6 font-Inter">
                                         <div className="flex flex-col space-y-4">
-                                            <div className="border-1 border-[#7B9D51] h-20 w-78 rounded-[10px]"></div>
-                                            <Link to="/admin/dashboard/revenue" className="border-1 border-[#7B9D51] h-30.5 w-78 rounded-[10px]"></Link>
+                                            <div className="border border-[#7B9D51] h-20 w-78 rounded-[10px]"></div>
+                                            <Link to="/admin/dashboard/revenue" className="border border-[#7B9D51] h-30.5 w-78 rounded-[10px]"></Link>
                                         </div>
-                                        <div className="border-1 border-[#7B9D51] h-55 w-[40%] rounded-[10px]"></div>
-                                        <div className="border-1 border-[#7B9D51] h-55 w-[40%] rounded-[10px]"></div>
+                                        <div className="border border-[#7B9D51] h-55 w-[40%] rounded-[10px]"></div>
+                                        <div className="border border-[#7B9D51] h-55 w-[40%] rounded-[10px]"></div>
                                     </div>
 
-                                    <div className="border-1 border-[#7B9D51] w-full rounded-[10px] mt-4">
+                                    <div className="border border-[#7B9D51] w-full rounded-[10px] mt-4">
                                         <h1
                                             className="font-Inter font-semibold text-lg my-4 mx-6"
                                         >Geographic Distribution</h1>
@@ -82,22 +82,22 @@ const AdminDashboard = () => {
                             active === "monthly" && (
                                 <>
                                     <div className="flex space-x-4 mt-6 font-Inter">
-                                        <div className="border-1 border-[#7B9D51] h-30 w-78 rounded-[10px]"></div>
-                                        <div className="border-1 border-[#7B9D51] h-30 w-78 rounded-[10px]"></div>
-                                        <div className="border-1 border-[#7B9D51] h-30 w-78 rounded-[10px]"></div>
-                                        <div className="border-1 border-[#7B9D51] h-30 w-78 rounded-[10px]"></div>
+                                        <Link to="/admin/dashboard/total_users" className="border border-[#7B9D51] h-30 w-78 rounded-[10px]"></Link>
+                                        <div className="border border-[#7B9D51] h-30 w-78 rounded-[10px]"></div>
+                                        <Link to="/admin/dashboard/churn_rate" className="border border-[#7B9D51] h-30 w-78 rounded-[10px]"></Link>
+                                        <Link to="/admin/dashboard/total_watch" className="border border-[#7B9D51] h-30 w-78 rounded-[10px]"></Link>
                                     </div>
 
                                     <div className="flex space-x-4 mt-6 font-Inter">
                                         <div className="flex flex-col space-y-4">
-                                            <div className="border-1 border-[#7B9D51] h-20 w-78 rounded-[10px]"></div>
-                                            <div className="border-1 border-[#7B9D51] h-30.5 w-78 rounded-[10px]"></div>
+                                            <div className="border border-[#7B9D51] h-20 w-78 rounded-[10px]"></div>
+                                            <Link to="/admin/dashboard/revenue" className="border border-[#7B9D51] h-30.5 w-78 rounded-[10px]"></Link>
                                         </div>
-                                        <div className="border-1 border-[#7B9D51] h-55 w-[40%] rounded-[10px]"></div>
-                                        <div className="border-1 border-[#7B9D51] h-55 w-[40%] rounded-[10px]"></div>
+                                        <div className="border border-[#7B9D51] h-55 w-[40%] rounded-[10px]"></div>
+                                        <div className="border border-[#7B9D51] h-55 w-[40%] rounded-[10px]"></div>
                                     </div>
 
-                                    <div className="border-1 border-[#7B9D51] w-full rounded-[10px] mt-4">
+                                    <div className="border border-[#7B9D51] w-full rounded-[10px] mt-4">
                                         <h1
                                             className="font-Inter font-semibold text-lg my-4 mx-6"
                                         >Geographic Distribution</h1>
@@ -121,22 +121,22 @@ const AdminDashboard = () => {
                             active === "weekly" && (
                                 <>
                                     <div className="flex space-x-4 mt-6 font-Inter">
-                                        <div className="border-1 border-[#7B9D51] h-30 w-78 rounded-[10px]"></div>
-                                        <div className="border-1 border-[#7B9D51] h-30 w-78 rounded-[10px]"></div>
-                                        <div className="border-1 border-[#7B9D51] h-30 w-78 rounded-[10px]"></div>
-                                        <div className="border-1 border-[#7B9D51] h-30 w-78 rounded-[10px]"></div>
+                                        <Link to="/admin/dashboard/total_users" className="border border-[#7B9D51] h-30 w-78 rounded-[10px]"></Link>
+                                        <div className="border border-[#7B9D51] h-30 w-78 rounded-[10px]"></div>
+                                        <Link to="/admin/dashboard/churn_rate" className="border border-[#7B9D51] h-30 w-78 rounded-[10px]"></Link>
+                                        <Link to="/admin/dashboard/total_watch" className="border border-[#7B9D51] h-30 w-78 rounded-[10px]"></Link>
                                     </div>
 
                                     <div className="flex space-x-4 mt-6 font-Inter">
                                         <div className="flex flex-col space-y-4">
-                                            <div className="border-1 border-[#7B9D51] h-20 w-78 rounded-[10px]"></div>
-                                            <div className="border-1 border-[#7B9D51] h-30.5 w-78 rounded-[10px]"></div>
+                                            <div className="border border-[#7B9D51] h-20 w-78 rounded-[10px]"></div>
+                                            <Link to="/admin/dashboard/revenue" className="border border-[#7B9D51] h-30.5 w-78 rounded-[10px]"></Link>
                                         </div>
-                                        <div className="border-1 border-[#7B9D51] h-55 w-[40%] rounded-[10px]"></div>
-                                        <div className="border-1 border-[#7B9D51] h-55 w-[40%] rounded-[10px]"></div>
+                                        <div className="border border-[#7B9D51] h-55 w-[40%] rounded-[10px]"></div>
+                                        <div className="border border-[#7B9D51] h-55 w-[40%] rounded-[10px]"></div>
                                     </div>
 
-                                    <div className="border-1 border-[#7B9D51] w-full rounded-[10px] mt-4">
+                                    <div className="border border-[#7B9D51] w-full rounded-[10px] mt-4">
                                         <h1
                                             className="font-Inter font-semibold text-lg my-4 mx-6"
                                         >Geographic Distribution</h1>

@@ -54,7 +54,7 @@ const TotalUsersDashboard = () => {
             <div
                 className='flex space-x-4 mt-6 ml-2 font-Inter'
             >
-                <div className="border-1 border-[#7B9D51] h-32 w-98 rounded-[10px] flex flex-col justify-between">
+                <div className="border border-[#7B9D51] h-32 w-98 rounded-[10px] flex flex-col justify-between">
                     <div className='flex justify-between mt-4 mx-4 items-center'>
                         <p className='font-semibold text-base'>Total Users</p>
                         <img
@@ -67,7 +67,7 @@ const TotalUsersDashboard = () => {
                         <p className='font-extralight text-gray-500 text-sm'>+8.2% from Yesterday</p>
                     </div>
                 </div>
-                <div className="border-1 border-[#7B9D51] h-32 w-98 rounded-[10px] flex flex-col justify-between">
+                <div className="border border-[#7B9D51] h-32 w-98 rounded-[10px] flex flex-col justify-between">
                     <div className='flex justify-between mt-4 mx-4 items-center'>
                         <p className='font-semibold text-base'>Active Uses</p>
                         <img
@@ -80,7 +80,7 @@ const TotalUsersDashboard = () => {
                         <p className='font-extralight text-gray-500 text-sm'>71.5% of daily users</p>
                     </div>
                 </div>
-                <div className="border-1 border-[#7B9D51] h-32 w-98 rounded-[10px] flex flex-col justify-between">
+                <div className="border border-[#7B9D51] h-32 w-98 rounded-[10px] flex flex-col justify-between">
                     <div className='flex justify-between mt-4 mx-4 items-center'>
                         <p className='font-semibold text-base'>Expired Users</p>
                         <img
@@ -95,7 +95,7 @@ const TotalUsersDashboard = () => {
                 </div>
             </div>
 
-            <div className="border-1 border-[#7B9D51] h-[50%] w-[99%] rounded-[10px] mt-4 ml-2 flex flex-col">
+            <div className="border border-[#7B9D51] h-[50%] w-[99%] rounded-[10px] mt-4 ml-2 flex flex-col">
                 <div className='flex justify-between my-6 mx-5'>
                     <div className='flex flex-col space-y-0.5'>
                         <h1 className='text-xl font-semibold'>User Growth Overview</h1>
@@ -167,7 +167,7 @@ const TotalUsersDashboard = () => {
             </div>
 
             <div className="flex space-x-4 mt-4 ml-2 font-Inter w-[98%] overflow-y-hidden">
-                <div className="border-1 border-[#7B9D51] w-[50%] rounded-[10px] px-6 p-4">
+                <div className="border border-[#7B9D51] w-[50%] rounded-[10px] px-6 p-4">
                     <h1 className='text-lg font-semibold'>Top Locations</h1>
                     <div className='mt-4'>
                         {
@@ -190,7 +190,7 @@ const TotalUsersDashboard = () => {
                     {GridData.map((data, index) => (
                         <div
                             key={index}
-                            className="border-1 border-[#7B9D51] h-28 rounded-[10px] flex flex-col justify-between"
+                            className="border border-[#7B9D51] h-28 rounded-[10px] flex flex-col justify-between"
                         >
                             <div className="flex justify-between mt-3 mx-3 items-center">
                                 <p className="font-semibold text-base">{data.name}</p>

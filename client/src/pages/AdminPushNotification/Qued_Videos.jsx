@@ -101,12 +101,12 @@ const Qued_Videos = () => {
     return (
         <div className='font-Inter mx-2 mb-12'>
             <h1 className='font-medium text-2xl mt-4 ml-2'>Que Videos</h1>
-            <div className='border-[#adc98c] border-1 py-8 px-8 rounded-md flex my-4'>
+            <div className='border-[#adc98c] border py-8 px-8 rounded-md flex my-4'>
                 <div className="relative flex items-center w-[120%]">
                     <input
                         type='text'
                         placeholder='Search eBooks...'
-                        className='border-[#adc98c] border-1 outline-none px-10 h-12 text-md rounded-md w-[100%]'
+                        className='border-[#adc98c] border outline-none px-10 h-12 text-md rounded-md w-[100%]'
                         value={searchedVideos}
                         onChange={(e) => setSearchedVideos(e.target.value)}
                     />
@@ -136,8 +136,8 @@ const Qued_Videos = () => {
                                 <td className="border border-gray-300 px-4 py-4 text-center">{video.title}</td>
                                 <td className="border border-gray-300 px-4 py-4 text-center">{video.category}</td>
                                 <td className="border border-gray-300 px-4 py-4 text-center space-x-4">
-                                    <button className='w-15 bg-gray-200 text-sm py-1.5 cursor-pointer rounded-md border-1'>View</button>
-                                    <button className='w-20 bg-[#7B9D51] text-sm py-1.5 cursor-pointer rounded-md border-1 text-white'
+                                    <button className='w-15 bg-gray-200 text-sm py-1.5 cursor-pointer rounded-md border'>View</button>
+                                    <button className='w-20 bg-[#7B9D51] text-sm py-1.5 cursor-pointer rounded-md border text-white'
                                         onClick={() => setshowDeletePopUp(!showDeletePopUp)}
                                     >
                                         Delete

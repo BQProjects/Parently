@@ -72,12 +72,12 @@ const ViewAllPublishedBooks = () => {
     return (
         <div className='font-Inter mx-2 mb-12'>
             <h1 className='font-medium text-2xl mt-4 ml-2'>All Published eBooks</h1>
-            <div className='border-[#adc98c] border-1 py-8 px-8 rounded-md flex my-4'>
+            <div className='border-[#adc98c] border py-8 px-8 rounded-md flex my-4'>
                 <div className="relative flex items-center w-[120%]">
                     <input
                         type='text'
                         placeholder='Search eBooks...'
-                        className='border-[#adc98c] border-1 outline-none px-10 h-12 text-md rounded-md w-[97%]'
+                        className='border-[#adc98c] border outline-none px-10 h-12 text-md rounded-md w-[97%]'
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
@@ -89,7 +89,7 @@ const ViewAllPublishedBooks = () => {
                             value={selectedCategory}
                             onChange={(e) => setSelectedCategory(e.target.value)}
                             placeholder="Filter by Category"
-                            className="border-[#adc98c] border-1 pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer"
+                            className="border-[#adc98c] border pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer"
                         >
                             {CategoriesList().map((category, index) => (
                                 <option key={index} value={category.toLowerCase()}>{category}</option>
@@ -103,7 +103,7 @@ const ViewAllPublishedBooks = () => {
                             value={selectedAccessLevel}
                             onChange={(e) => setSelectedAccessLevel(e.target.value)}
                             placeholder="Filter by Access Level"
-                            className='border-[#adc98c] border-1 pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer'>
+                            className='border-[#adc98c] border pl-4 pr-10 h-12 rounded-md appearance-none w-full outline-none cursor-pointer'>
                             {AccessLevel().map((AccessLevel, index) => (
                                 <option key={index} value={AccessLevel.toLowerCase()}>{AccessLevel}</option>
                             ))
@@ -147,8 +147,8 @@ const ViewAllPublishedBooks = () => {
                             <td className="border border-gray-300 px-4 py-4">{data.date ? new Date(data.date).toISOString().split('T')[0] : "N/A"}</td>
 
                             <td className="border border-gray-300 px-4 py-4 text-center space-x-8">
-                                <button className='w-15 bg-gray-200 text-sm py-1.5 cursor-pointer rounded-md border-1'>View</button>
-                                <button className='w-15 bg-gray-200 text-sm py-1.5 cursor-pointer rounded-md border-1'
+                                <button className='w-15 bg-gray-200 text-sm py-1.5 cursor-pointer rounded-md border'>View</button>
+                                <button className='w-15 bg-gray-200 text-sm py-1.5 cursor-pointer rounded-md border'
                                     onClick={() => setDeleteVideo(data)}
                                 >
                                     Delete

@@ -51,7 +51,7 @@ const ChurnDashboard = () => {
             >
                 {
                     DummyDataofChurn.map((data) => (
-                        <div className='border-1 border-[#7B9D51] h-32 w-[50%] rounded-[10px] flex flex-col justify-between'>
+                        <div className='border border-[#7B9D51] h-32 w-[50%] rounded-[10px] flex flex-col justify-between'>
                             <>
                                 <div className='flex justify-between ml-4 mr-6 mt-4'>
                                     <h1 className='font-semibold'>{data.name}</h1>
